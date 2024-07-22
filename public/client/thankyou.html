@@ -1,0 +1,448 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="keywords" content="htmlcss bootstrap, multi level menu, submenu, treeview nav menu examples" />
+<meta name="description" content="Bootstrap 5 navbar multilevel treeview examples for any type of project, Bootstrap 5" />  
+
+<title>Demo - Bootstrap 5 multilevel dropdown submenu sample</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"crossorigin="anonymous"></script>
+
+<style type="text/css">
+
+/* ============ desktop view ============ */
+
+	.dropdown-menu li{
+		position: relative;
+	}
+	.dropdown-menu .submenu{ 
+		display: none;
+		position: absolute;
+		left:100%; top:-7px;
+	}
+	.dropdown-menu .submenu-left{ 
+		right:100%; left:auto;
+	}
+
+	.dropdown-menu > li:hover{ background-color: #f1f1f1 }
+	.dropdown-menu > li:hover > .submenu{
+		display: block;
+	}
+
+
+	.pad-50 {
+		padding: 50px 0;
+	}
+	.pad-200 {
+		padding: 200px 0;
+	}
+    
+
+	.navbar .megamenu{ padding: 1rem; }
+/* ============ desktop view ============ */
+@media all and (min-width: 992px) {
+	
+	.navbar .has-megamenu{position:static!important;}
+	.navbar .megamenu{left:0; right:0; width:100%; margin-top:0;  }
+	
+}	
+/* ============ desktop view .end// ============ */
+
+
+
+/* ============ small devices ============ */
+@media (max-width: 991px) {
+
+.dropdown-menu .dropdown-menu{
+		margin-left:0.7rem; margin-right:0.7rem; margin-bottom: .5rem;
+}
+
+.dropdown-menu > li:hover > .submenu {
+    display: block;
+    position: initial;
+}
+
+.navbar.fixed-top .navbar-collapse, .navbar.sticky-top .navbar-collapse{
+		overflow-y: auto;
+	    max-height: 90vh;
+	    margin-top:10px;
+	}
+}	
+/* ============ small devices .end// ============ */
+
+</style>
+
+
+<script type="text/javascript">
+//	window.addEventListener("resize", function() {
+//		"use strict"; window.location.reload(); 
+//	});
+
+
+	document.addEventListener("DOMContentLoaded", function(){
+        
+
+    	/////// Prevent closing from click inside dropdown
+		document.querySelectorAll('.dropdown-menu').forEach(function(element){
+			element.addEventListener('click', function (e) {
+			  e.stopPropagation();
+			});
+		})
+
+
+
+		// make it as accordion for smaller screens
+		if (window.innerWidth < 992) {
+
+			// close all inner dropdowns when parent is closed
+			document.querySelectorAll('.navbar .dropdown').forEach(function(everydropdown){
+				everydropdown.addEventListener('hidden.bs.dropdown', function () {
+					// after dropdown is hidden, then find all submenus
+					  this.querySelectorAll('.submenu').forEach(function(everysubmenu){
+					  	// hide every submenu as well
+					  	everysubmenu.style.display = 'none';
+					  });
+				})
+			});
+			
+			document.querySelectorAll('.dropdown-menu a').forEach(function(element){
+				element.addEventListener('click', function (e) {
+		
+				  	let nextEl = this.nextElementSibling;
+				  	if(nextEl && nextEl.classList.contains('submenu')) {	
+				  		// prevent opening link if link needs to open dropdown
+				  		e.preventDefault();
+				  		console.log(nextEl);
+				  		if(nextEl.style.display == 'block'){
+				  			nextEl.style.display = 'none';
+				  		} else {
+				  			nextEl.style.display = 'block';
+				  		}
+
+				  	}
+				});
+			})
+		}
+		// end if innerWidth
+
+	}); 
+	// DOMContentLoaded  end
+</script>
+
+</head>
+<body>
+
+<header class="section-header">
+	<div class="">
+		<div class="">
+			<div class="">
+				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+					<div class="container">
+						 <a class="navbar-brand" href="#"><img width="150px" src="img/logo.jpg" alt=""></a>
+					 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
+						 <span class="navbar-toggler-icon"></span>
+					   </button>
+					 <div class="collapse navbar-collapse" id="main_nav">
+					   
+				   
+					   <ul class="navbar-nav">
+						   <li class="nav-item active"> <a class="nav-link" href="#">Home </a> </li>
+						   <li class="nav-item"><a class="nav-link" href="#"> About </a></li>
+						   <li class="nav-item dropdown">
+							   <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Treeview menu  </a>
+							   <ul class="dropdown-menu">
+								 <li><a class="dropdown-item" href="#"> Dropdown item 1 </a></li>
+								 <li><a class="dropdown-item" href="#"> Dropdown item 2 &raquo; </a>
+									  <ul class="submenu dropdown-menu">
+									   <li><a class="dropdown-item" href="#">Submenu item 1</a></li>
+									   <li><a class="dropdown-item" href="#">Submenu item 2</a></li>
+									   <li><a class="dropdown-item" href="#">Submenu item 3 &raquo; </a>
+										   <ul class="submenu dropdown-menu">
+											   <li><a class="dropdown-item" href="#">Multi level 1</a></li>
+											   <li><a class="dropdown-item" href="#">Multi level 2</a></li>
+										   </ul>
+									   </li>
+									   <li><a class="dropdown-item" href="#">Submenu item 4</a></li>
+									   <li><a class="dropdown-item" href="#">Submenu item 5</a></li>
+									</ul>
+								 </li>
+								 <li><a class="dropdown-item" href="#"> Dropdown item 3 </a></li>
+								 <li><a class="dropdown-item" href="#"> Dropdown item 4 </a>
+							   </ul>
+						   </li>
+
+						   <li class="nav-item dropdown">
+							<a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown"> Dropdown right </a>
+							<ul class="dropdown-menu dropdown-menu-right">
+							  <li><a class="dropdown-item" href="#"> Dropdown item 1</a></li>
+							  <li><a class="dropdown-item" href="#"> Dropdown item 2 </a></li>
+
+							  <li><a class="dropdown-item" href="#"> Dropdown item 4 </a></li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown has-megamenu">
+							<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> Mega menu  </a>
+							<div class="dropdown-menu megamenu" role="menu">
+								<div class="row g-3">
+									<div class="col-lg-3 col-6">
+										<div class="col-megamenu">
+											<h6 class="title">Title Menu One</h6>
+											<ul class="list-unstyled">
+												<li><a href="#">Custom Menu</a></li>
+												<li><a href="#">Custom Menu</a></li>
+												<li><a href="#">Custom Menu</a></li>
+												<li><a href="#">Custom Menu</a></li>
+												<li><a href="#">Custom Menu</a></li>
+												<li><a href="#">Custom Menu</a></li>
+											</ul>
+										</div>  <!-- col-megamenu.// -->
+									</div><!-- end col-3 -->
+									<div class="col-lg-3 col-6">
+										<div class="col-megamenu">
+											<h6 class="title">Title Menu Two</h6>
+											<ul class="list-unstyled">
+												<li><a href="#">Custom Menu</a></li>
+												<li><a href="#">Custom Menu</a></li>
+												<li><a href="#">Custom Menu</a></li>
+												<li><a href="#">Custom Menu</a></li>
+												<li><a href="#">Custom Menu</a></li>
+												<li><a href="#">Custom Menu</a></li>
+											</ul>
+										</div>  <!-- col-megamenu.// -->
+									</div><!-- end col-3 -->
+									<div class="col-lg-3 col-6">
+										<div class="col-megamenu">
+											<h6 class="title">Title Menu Three</h6>
+											<ul class="list-unstyled">
+												<li><a href="#">Custom Menu</a></li>
+												<li><a href="#">Custom Menu</a></li>
+												<li><a href="#">Custom Menu</a></li>
+												<li><a href="#">Custom Menu</a></li>
+												<li><a href="#">Custom Menu</a></li>
+												<li><a href="#">Custom Menu</a></li>
+											</ul>
+										</div>  <!-- col-megamenu.// -->
+									</div>    
+									<div class="col-lg-3 col-6">
+										<div class="col-megamenu">
+											<h6 class="title">Title Menu Four</h6>
+											<ul class="list-unstyled">
+												<li><a href="#">Custom Menu</a></li>
+												<li><a href="#">Custom Menu</a></li>
+												<li><a href="#">Custom Menu</a></li>
+												<li><a href="#">Custom Menu</a></li>
+												<li><a href="#">Custom Menu</a></li>
+												<li><a href="#">Custom Menu</a></li>
+											</ul>
+										</div>  <!-- col-megamenu.// -->
+									</div><!-- end col-3 -->
+								</div><!-- end row --> 
+							</div> <!-- dropdown-mega-menu.// -->
+						</li>
+
+						   <!-- <li class="nav-item dropdown">
+							   <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  More items  </a>
+							   <ul class="dropdown-menu">
+								 <li><a class="dropdown-item" href="#"> Dropdown item 1 </a></li>
+								 <li><a class="dropdown-item" href="#"> Dropdown item 2 &raquo; </a>
+									  <ul class="submenu dropdown-menu">
+									   <li><a class="dropdown-item" href="#">Submenu item 1</a></li>
+									   <li><a class="dropdown-item" href="#">Submenu item 2</a></li>
+									   <li><a class="dropdown-item" href="#">Submenu item 3</a></li>
+									</ul>
+								 </li>
+								 <li><a class="dropdown-item" href="#"> Dropdown item 3 &raquo; </a>
+									  <ul class="submenu dropdown-menu">
+									   <li><a class="dropdown-item" href="#">Another submenu 1</a></li>
+									   <li><a class="dropdown-item" href="#">Another submenu 2</a></li>
+									   <li><a class="dropdown-item" href="#">Another submenu 3</a></li>
+									   <li><a class="dropdown-item" href="#">Another submenu 4</a></li>
+									</ul>
+								 </li>
+								 <li><a class="dropdown-item" href="#"> Dropdown item 4 &raquo;</a>
+									  <ul class="submenu dropdown-menu">
+									   <li><a class="dropdown-item" href="#">Another submenu 1</a></li>
+									   <li><a class="dropdown-item" href="#">Another submenu 2</a></li>
+									   <li><a class="dropdown-item" href="#">Another submenu 3</a></li>
+									   <li><a class="dropdown-item" href="#">Another submenu 4</a></li>
+									</ul>
+								 </li>
+								 <li><a class="dropdown-item" href="#"> Dropdown item 5 </a></li>
+								 <li><a class="dropdown-item" href="#"> Dropdown item 6 </a></li>
+							   </ul>
+						   </li> -->
+					   </ul>
+				   
+
+				   
+					 </div> <!-- navbar-collapse.// -->
+					</div> <!-- container-fluid.// -->
+				   </nav>
+			</div>
+		</div>
+	</div>
+
+</header> <!-- section-header.// -->
+
+
+<div class="pad-200 d-flex justify-content-center align-items-center">
+    <div>
+        <div class="mb-4 text-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="text-success" width="75" height="75"
+                fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                <path
+                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+            </svg>
+        </div>
+        <div class="text-center">
+            <h1>Thank You !</h1>
+            <p>We've send the link to your inbox. Lorem ipsum dolor sit, </p>
+            <button class="btn btn-primary">Back Home</button>
+        </div>
+    </div>
+</div>
+
+
+<footer class="bg-light pad-50">
+	<div class="container">
+	  <div class="row">
+
+		<div class="col-12">
+			<div class="row justify-content-center mb-5">
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+					<div class="footer-menu-block">
+						<div class="row  align-items-center ">
+							<div class="col-xl-8 col-lg-9 col-md-9 col-sm-12">
+								<div class="footer-menu d-flex gy-5 align-items-center justify-content-between">
+									<div class="footer-logo">
+										<img width="125px" src="img/logo.jpg" alt="">
+									</div>
+									<ul class="d-flex align-items-center gap-3 m-0 p-0 list-unstyled">
+										<li> <a href="#">Home </a></li>
+										<li> <a href="#">About Us </a></li>
+										<li> <a href="#">Projects </a></li>
+										<li> <a href="#">Gallery </a></li>
+										<li> <a href="#">Interiors </a></li>
+										<li> <a href="#">Blog </a></li>
+									</ul>
+								</div>
+							</div>
+				
+							<div class="col-xl-4 col-lg-3 col-md-3 col-sm-12">
+								<ul class="footer-social-media-link list-unstyled d-flex align-items-center gap-5 m-0 p-0 justify-content-end">
+									<li><a href="#" target="_blank"><img src="img/facebook.svg" alt=""></a></li>
+				
+									<li><a href="#" target="_blank"><img src="img/instagram.svg" alt=""></a></li>
+				
+									<li><a href="#" target="_blank"><img src="img/youtube.svg" alt=""></a></li>
+				
+									<li><a href="#" target="_blank"><img src="img/twitter.svg" alt=""></a></li>
+									
+									<li><a href="#" target="_blank"><img src="img/linkedin.svg" alt=""></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+
+			<div class="row ">
+				<div class="col-xl col-lg col-md-4 col-sm-6 col-12">
+					<div class="footer-megamenu-block-item">
+						<h5>Menu Title</h5>
+						<ul class="m-0 p-0 list-unstyled">
+							<li><a href="#">Menu Link 01</a></li>
+							<li><a href="#">Menu Link 02</a></li>
+							<li><a href="#">Menu Link 03</a></li>
+							<li><a href="#">Menu Link 04</a></li>
+							<li><a href="#"> Menu Link 05</a></li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="col-xl col-lg col-md-4 col-sm-6 col-12 ftr__list-nav">
+					<div class="footer-megamenu-block-item">
+						<h5>Menu Title</h5>
+						<ul class="m-0 p-0 list-unstyled">
+							<li><a href="#">Menu Link 01</a></li>
+							<li><a href="#">Menu Link 02</a></li>
+							<li><a href="#">Menu Link 03</a></li>
+							<li><a href="#">Menu Link 04</a></li>
+						</ul>
+					</div>
+				</div>
+
+
+				<div class="col-xl col-lg col-md-4 col-sm-6 col-12 ftr__list-nav">
+					<div class="footer-megamenu-block-item">
+						<h5>Menu Title</h5>
+						<ul class="m-0 p-0 list-unstyled">
+							<li><a href="#">Menu Link 01</a></li>
+							<li><a href="#">Menu Link 02</a></li>
+							<li><a href="#">Menu Link 03</a></li>
+						</ul>
+					</div>
+				</div>
+
+
+				<div class="col-xl col-lg col-md-4 col-sm-6 col-12 ftr__list-nav">
+					<div class="footer-megamenu-block-item">
+						<h5>Menu Title</h5>
+						<ul class="m-0 p-0 list-unstyled">
+							<li><a href="#">Menu Link 01</a></li>
+							<li><a href="#">Menu Link 02</a></li>
+							<li><a href="#">Menu Link 03</a></li>
+							<li><a href="#">Menu Link 04</a></li>
+							<li><a href="#"> Menu Link 05</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="col-xl col-lg col-md-4 col-sm-6 col-12 ftr__list-nav">
+					<div class="footer-megamenu-block-item">
+						<h5>Menu Title</h5>
+						<ul class="m-0 p-0 list-unstyled">
+							<li><a href="#">Menu Link 01</a></li>
+							<li><a href="#">Menu Link 02</a></li>
+							<li><a href="#">Menu Link 03</a></li>
+							<li><a href="#">Menu Link 04</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-12">
+			<div class="footer-content-block mt-5">
+				<div class="row justify-content-between">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+						<div class="footer-des">
+							<h6>Lorem ipsum dolor sit.</h6>
+							<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti vero amet eveniet cupiditate impedit praesentium similique at optio corrupti, aperiam sunt facilis adipisci soluta minus animi recusandae aut quibusdam incidunt odit iure reiciendis molestias! Beatae quibusdam recusandae reiciendis facere dolores sint cupiditate repudiandae iure, a maxime qui libero aperiam voluptates! Mollitia vel officia consequatur, sed saepe dignissimos magnam provident velit ducimus odio odit cumque in voluptas soluta! Voluptatum, id autem! Commodi quos ipsam vero aspernatur consequatur, est corrupti ipsum cum quibusdam sit eum, voluptatem itaque doloremque. Exercitationem error suscipit laboriosam eligendi necessitatibus rem quos ratione quidem modi ipsum, tempora voluptas placeat voluptatem. Accusamus quaerat mollitia, adipisci dolores provident consectetur ad eveniet dicta tempora minus eius, consequuntur est harum aperiam! Vero alias vel minima ut rem aut, corporis fugiat modi mollitia explicabo, qui sapiente accusantium facilis doloremque? Tempore sint, aliquid alias voluptatem quis numquam a porro impedit earum eos! Quasi, obcaecati.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	  </div>
+
+
+	  <div class="d-flex justify-content-center">
+  
+		<div class="copyright">
+		  <p>Developed and maintained by <a href="#" target="_blank">company</a></p>
+		</div>
+	  </div>
+	</div>
+  </footer>
+
+
+</body>
+</html>

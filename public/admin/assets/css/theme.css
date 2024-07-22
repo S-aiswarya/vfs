@@ -1,0 +1,301 @@
+:root {
+    --blue: #2fc3eb;
+    --white: #ffffff; 
+     
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,500;1,600;1,800&display=swap');
+
+
+
+body{
+    background-color: #f8f9fc;
+    font-family: 'Poppins', sans-serif;
+}
+.navbar-custom .nav-link.button-menu-mobile { 
+    color:var(--white) !important; 
+    background-color: #ee3c35;
+    margin: 10px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0;
+    width: 35px;
+}
+.left-sidenav .brand .logo .logo-sm {
+    height: 50px;
+    object-fit: contain;
+    object-position: left;
+    width: 200px;
+}
+.dashboard-styles .card   {
+    margin:10px 0;
+}
+.dashboard-styles .card-body{
+    padding:30px;
+}
+.dashboard-styles .card h3 {
+    padding: 0 0 10px 0;
+    font-size: 16px;
+    margin:0 0 20px;
+    border-bottom: 1px solid #f5f5f5; 
+}    
+.card   {
+    box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
+    margin:15px 0;
+    border: 1px solid #e3e6f0;
+    border-radius: 0.35rem;
+}
+
+
+
+
+.topbar { 
+box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
+}
+.left-sidenav-menu li>a{
+line-height:35px;
+color: #000;
+}
+.left-sidenav-menu li>a i { 
+    color: #333;
+}
+.left-sidenav-menu li>a:hover {
+    color: var(--blue);
+}
+.left-sidenav-menu li>a:hover i {
+    color: var(--blue);
+}
+.thumb-xs {
+height: 25px !important;
+width: 25px !important; 
+}
+.left-sidenav { 
+ 
+}
+.left-sidenav-menu li { 
+margin-top: 0px; 
+border-bottom: 1px solid rgb(222 222 222);
+}
+.card .card-header { 
+font-weight: 600;
+font-size: 16px;
+}
+.navbar-custom {
+    border-bottom: 1px solid var(--blue)  ;
+}
+.card { 
+    /* border: 1px solid var(--blue) ;  */
+    overflow: hidden;
+}
+.card {
+
+    overflow: hidden;
+    background: #fff;
+}
+.card .card  {
+    background: #fff;
+    }
+
+thead.table-light {
+    background-color: var(--blue) ;
+}
+thead{
+    background: #2b3f6c;
+}
+.table thead th {
+    color: #fff;
+}
+/* .left-sidenav {
+    border-right: 1px solid var(--blue);
+} */
+.btn-primary {
+    color: #fff;
+    background-color: #ee3c35;
+    border-color: transparent;
+    /*padding: 8px 20px;*/
+    font-size: 14px;
+}
+.auth-form .btn{ 
+    border-radius: 15px;  
+    height: 40px;
+}
+.account-body .auth-header-box {
+    background-color:  var(--white);
+}
+.account-body .auth-body-box {
+    background-color:  var(--blue);
+    padding: 50px;
+}
+
+.auth-body-box h4{
+    font-size: 28px;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+}
+.auth-body-box p{
+    font-size: 16px; 
+    color: #fff;
+    text-align: center;
+}
+
+.auth-body-box .form-control {
+    border-radius: 15px !important;
+    line-height: 40px;
+    height: 40px;
+}
+
+.auth-body-box .form-check-label{
+    line-height: 20px;
+    color: var(--white);
+}
+.auth-body-box .log-link{
+    font-size: 13px;
+    text-decoration: underline;
+    color: var(--white);
+
+}
+
+.log-footer{
+    text-align: center;
+    font-size: 13px;
+    margin-top: 15px;
+}
+
+/* ul.metismenu.left-sidenav-menu{
+    background: linear-gradient(180deg,#F1FAFF 0%,#FFEAD5 100%);
+    filter: drop-shadow(-23px 0px 32px rgba(98,98,98,0.19));
+} */
+
+
+.left-sidenav {
+    background: #fff;
+    filter: drop-shadow(-23px 0px 32px rgba(98,98,98,0.19));
+}
+
+
+.table th, .table td {
+    padding: 0.45rem;
+    vertical-align: top;
+    border-top: 1px solid rgb(222 222 222);
+}
+
+
+a.btn.btn-info.btn-sm {
+    background: linear-gradient(92.28deg,#FFEAD5 -22.93%,#FFFFFF 38.77%,#B0E5FF 118.1%);
+    box-shadow: 0 11px 27px rgb(252 215 178 / 44%);
+    border-radius: 1px;
+    border: 0;
+    color: #003676;
+}
+
+
+
+.form-control {
+    border: 1px solid rgba(217,217,217,.53) !important;
+    border-radius: 2px;
+    padding: 12px 15px 12px 15px;
+    margin-bottom: 5px;
+    background: #fff;
+    width: 100%;
+    height: auto;
+}
+.card .card-header {
+    background-color: rgba(225,234,249,.33) !important;
+}
+
+
+
+
+
+.account-body{
+    background-color: #fff;
+}
+
+.account-body .auth-body-box {
+    background: linear-gradient(180deg,#F7FCFF 5.75%,rgba(255,234,213,0.33) 100%);
+    border-radius: 8px;
+    box-shadow: 0 12px 48px rgb(26 33 52 / 11%);
+    padding: 32px;
+    width: 100%;
+}
+
+
+.account-body .auth-body-box h4 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+    background: linear-gradient(121.99deg,#626262 30.78%,#F5CDAA 85.28%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+.account-body .auth-body-box p {
+    font-size: 16px;
+    color: #2b406c;
+    text-align: center;
+}
+.account-body .auth-body-box .form-check-label {
+    line-height: 20px;
+    color: #2b406c;
+}
+
+.account-body .auth-body-box .form-control {
+    border-radius: 2px;
+    line-height: 40px;
+    height: 48px;
+    border-radius: 2px !important;
+    padding: 12px 15px 12px 15px;
+    margin-bottom: 5px;
+    background: #fff;
+    width: 100%;
+}
+
+button.btn.btn-dark.btn-block.waves-effect.waves-light {
+    background: linear-gradient(92.28deg,#FFEAD5 -22.93%,#FFFFFF 38.77%,#B0E5FF 118.1%);
+    box-shadow: 0 11px 27px rgb(252 215 178 / 44%);
+    border-radius: 1px;
+    border: 0;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 122%;
+    letter-spacing: .03em;
+    color: #003676;
+    width: 100%;
+    padding: 20px;
+    margin-top: 10px;
+    height: auto;
+}
+
+.account-body{
+    position: relative;
+    display: block;
+}
+
+.account-body::before {
+    background: no-repeat url(../images/login-gr.jpg);
+    position: absolute;
+    content: "";
+    width: 500px;
+    height: 600px;
+    left: 0;
+    bottom: 0;
+    background-position: left;
+    background-size: contain;
+    z-index: 0;
+}
+
+.login-logo {
+    height: 64px;
+    width: 100%;
+    padding: 0 30px;
+    margin-top: 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+a.logo.logo-admin img {
+    width: 85px;
+}

@@ -1,0 +1,99 @@
+body {
+    background-color: #f7f7f9;
+    font-family: 'Poppins', sans-serif;
+}
+
+.card{
+border:0;
+margin-bottom: 1.5rem;
+    -webkit-box-shadow: 0 1px 2px rgba(56,65,74,.15);
+    box-shadow: 0 1px 2px rgba(56,65,74,.15);
+}
+.left-sidenav-menu li>a i { 
+    margin-right: 5px;
+ color: #6d7080;
+}
+.left-sidenav-menu li>a {
+    line-height: 38px;
+    color: #6d7080;
+}
+.left-sidenav-menu li {
+    margin-top: 0px;
+    font-size: 13px;
+    border-bottom: 1px solid rgb(222, 222, 222, .3);
+}
+.left-sidenav-menu li>a:hover {
+    color: var(--blue);
+}
+.left-sidenav-menu li>a:hover {
+    color: #213d79;
+}
+.left-sidenav-menu li>a:hover i {
+    color: #213d79;
+}
+.navbar-custom {
+    border-bottom: 1px solid #213d79;;
+}
+.navbar-custom .nav-link.button-menu-mobile { 
+    background-color: #364f86; 
+}
+.btn-primary { 
+    background-color: #364f86; 
+}
+.table th  { 
+    line-height: 30px;
+}
+  .table td { 
+    line-height: 50px;
+}
+.card .card-header {
+    font-weight: 500; 
+}
+.form-control {
+    border: 1px solid #ced4da !important;
+    border-radius: 2px;
+    padding: 8px 10px;
+    margin-bottom: 5px;
+    background: #fff;
+    width: 100%;
+    height: auto;
+color: #212529;
+font-weight: 400;
+}
+label {
+    font-weight: 500;
+    color: #212529;
+    font-size: 12px;
+}
+
+.card .card-header {
+    background-color: unset;
+    border-bottom: 1px solid #e9ebec;
+    color: #495057;
+}
+
+.filter-form .form-group {
+    margin-bottom: 5px;
+}
+
+.select2-container--default .select2-selection--single, .select2-dropdown, .select2-container--default .select2-search--dropdown .select2-search__field{
+    border: 1px solid #ced4da !important;
+    border-radius: 0;
+}
+
+.calendar-table thead  {
+    background: unset;
+}
+
+.card {
+    overflow: unset; 
+}
+
+.view-pop{
+    line-height: 35px;
+      border-bottom: 1px solid #e5e5e5;
+}
+
+.modal-body .settings-item{
+    padding: 15px 10px;
+}
