@@ -58,6 +58,7 @@
                                             <th class="table-width-120">Location</th>
                                             <th class="table-width-120">Name</th>
                                             <th class="table-width-120">Address</th>
+                                            <th class="table-width-120">Token</th>
                                             <th class="table-width-120">Last Updated On</th>
                                             <th class="nosort nosearch table-width-10">@if(auth()->user()->can($permissions['edit'])) Edit @else View @endif</th>
                                             <th class="nosort nosearch table-width-10">Delete</th>
@@ -90,6 +91,7 @@
             {data: 'location', name: 'locations.name'},
             {data: 'name', name: 'name'},
             {data: 'address', name: 'address'},
+            {data: 'token', name: 'token'},
             {data: 'date', name: 'updated_at'},
             {data: 'action_ajax_edit', name: 'action_ajax_edit'},
             {data: 'action_delete', name: 'action_delete'}

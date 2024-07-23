@@ -31,7 +31,7 @@ use App\Http\Controllers\Admin\CheckInController;
 use App\Http\Controllers\Admin\EmployController;
 use App\Http\Controllers\Admin\GuardController;
 use App\Http\Controllers\Admin\KeyTypeController;
-use App\Http\Controllers\Admin\RegisterTypeController;
+use App\Http\Controllers\Admin\RegistertypeController;
 use Illuminate\Support\Facades\Route;
 
 $prefix = (config()->has('admin.url_prefix'))?config()->get('admin.url_prefix'):'admin';
@@ -231,14 +231,14 @@ Route::group(['prefix' => $prefix, 'middleware' => ['web']], function () use($mi
 
 
      //register_types
-      Route::get('/register_types', [RegisterTypeController::class, 'index'])->name('admin.register_types.index');
-      Route::get('/register_types/create', [RegisterTypeController::class, 'create'])->name('admin.register_types.create');
-      Route::get('/register_types/edit/{id}', [RegisterTypeController::class, 'edit'])->name('admin.register_types.edit');
-      Route::get('/register_typess/destroy/{id}', [RegisterTypeController::class, 'destroy'] )->name('admin.register_types.destroy');
-      Route::get('/register_types/show/{id}', [RegisterTypeController::class, 'show'])->name('admin.register_types.show');
-      Route::post('/register_types/update', [RegisterTypeController::class, 'update'])->name('admin.register_types.update');
-      Route::get('/register_types/change-status/{id}', [RegisterTypeController::class, 'changeStatus'])->name('admin.register_types.change-status');
-      Route::post('/register_types/store', [RegisterTypeController::class, 'store'])->name('admin.register_types.store');
+      Route::get('/register_types', [RegistertypeController::class, 'index'])->name('admin.register_types.index');
+      Route::get('/register_types/create', [RegistertypeController::class, 'create'])->name('admin.register_types.create');
+      Route::get('/register_types/edit/{id}', [RegistertypeController::class, 'edit'])->name('admin.register_types.edit');
+      Route::get('/register_typess/destroy/{id}', [RegistertypeController::class, 'destroy'] )->name('admin.register_types.destroy');
+      Route::get('/register_types/show/{id}', [RegistertypeController::class, 'show'])->name('admin.register_types.show');
+      Route::post('/register_types/update', [RegistertypeController::class, 'update'])->name('admin.register_types.update');
+      Route::get('/register_types/change-status/{id}', [RegistertypeController::class, 'changeStatus'])->name('admin.register_types.change-status');
+      Route::post('/register_types/store', [RegistertypeController::class, 'store'])->name('admin.register_types.store');
 
      //gates
      Route::get('/gates', [GateController::class, 'index'])->name('admin.gates.index');

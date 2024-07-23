@@ -22,6 +22,11 @@
         <label for="name">Name</label>
         <input type="text" class="form-control" id="name" name="name" value="{{$obj->name}}">
       </div>
+
+      <div class="form-group">
+        <label for="name">Token</label>
+        <input type="text" class="form-control" id="token" name="token" value="{{$obj->token}}">
+      </div>
         
       <div class="form-group col-md-12">
         <label>Address</label>
