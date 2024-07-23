@@ -30,6 +30,7 @@ use App\Models\ReferralList;
 use App\Models\CourseLevel;
 use App\Models\Intake;
 use App\Models\LeadSource;
+use App\Models\Register_type;
 use App\Models\Role;
 use App\Models\SubjectArea;
 use App\Models\TitleList;
@@ -38,6 +39,15 @@ use DB;
 
 class ListController extends Controller
 {
+ 
+    public function register_types(Request $request){
+        $register_types = Register_type::select('id','key_id','register_name','group_name','check_out','sort_order');
+        if($request->keyword)
+           $register_types->where('register_name', 'LIKE', '%'.$request->keyword.'%');
+        $register_types = $register_types->get();
+        return response()->json(['data' => $register_types]);
+    }
+
     public function countries(Request $request){
         $countries = new Country;
         if($request->keyword)

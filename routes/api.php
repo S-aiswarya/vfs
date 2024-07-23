@@ -199,6 +199,7 @@ Route::group(['middleware' => ['auth:sanctum', 'type.user']], function(){
     Route::get('phone-calls/summary', [PhoneCallController::class, 'summary'])->name('app.phone-calls.summary');
     Route::get('phone-calls/{lead_id}', [PhoneCallController::class, 'index'])->name('app.phone-calls.index');
 
+    Route::get('listing/register-types', [ListController::class, 'register_types'])->name('app.listings.register_types');
     Route::get('listing/countries', [ListController::class, 'countries'])->name('app.listings.countries');
     Route::get('listing/applications', [ListController::class, 'applications'])->name('app.listings.applications');
     Route::get('listing/subject-areas', [ListController::class, 'subject_areas'])->name('app.listings.subject-areas');
