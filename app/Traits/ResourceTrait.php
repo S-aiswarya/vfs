@@ -147,11 +147,12 @@ trait ResourceTrait {
 
 	protected function _store($data)
 	{
+       
         $data['is_featured'] = isset($data['is_featured'])?1:0;
         $data['priority'] = (!empty($data['priority']))?$data['priority']:0;
         
 		$this->model->fill($data);
-		if($this->model->save())
+        if($this->model->save())
             return $this->model;
         else
             return false;

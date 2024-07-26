@@ -27,7 +27,7 @@ class GuardController extends Controller
     }
     
     protected function getCollection(){ 
-        return $this->model->select('guard_sign_in.*','users.name as user')->join('users','users.id','=','guard_sign_in.user_id')->join('centers.name as center','=','guard_sign_in.center_id');
+        return $this->model->select('guard_sign_in.*','users.name as user','centers.name as center')->join('users','users.id','=','guard_sign_in.user_id')->join('centers','centers.id','=','guard_sign_in.center_id');
     }
 
     protected function setDTData($collection) {

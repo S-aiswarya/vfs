@@ -13,7 +13,7 @@
             <label for="user">user</label>
             <select name="user_id" style="width: 100% !important;" class="w-100 webadmin-select2-input form-control" data-parent=".confirm-wrap" data-select2-url="{{route('admin.select2.users')}}">
               @if($obj->user)
-                <option value="{{$obj->user->id}}" selected="selected">{{$obj->users->name}}</option>
+                <option value="{{$obj->user->id}}" selected="selected">{{$obj->user->name}}</option>
               @endif
             </select>
         </div>
@@ -27,7 +27,7 @@
             <label for="center">Centers</label>
             <select name="center_id" style="width: 100% !important;" class="w-100 webadmin-select2-input form-control" data-parent=".confirm-wrap" data-select2-url="{{route('admin.select2.centers')}}">
               @if($obj->center)
-                <option value="{{$obj->centers->id}}" selected="selected">{{$obj->centers->name}}</option>
+                <option value="{{$obj->center->id}}" selected="selected">{{$obj->center->name}}</option>
               @endif
             </select>
         </div>

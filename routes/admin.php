@@ -284,7 +284,9 @@ Route::group(['prefix' => $prefix, 'middleware' => ['web']], function () use($mi
      Route::get('/guards/show/{id}', [GuardController::class, 'show'])->name('admin.guards.show');
      Route::post('/guards/update', [GuardController::class, 'update'])->name('admin.guards.update');
      Route::get('/guards/change-status/{id}', [GuardController::class, 'changeStatus'])->name('admin.guards.change-status');
-     Route::post('//store', [GuardController::class, 'store'])->name('admin.guards.store');
+     Route::post('/store', [GuardController::class, 'store'])->name('admin.guards.store');
+     Route::get('/guards/emails/{id}', [GuardController::class, 'emails'])->name('admin.guards.emails');
+     Route::post('/guards/emails/store', [GuardController::class, 'emailStore'])->name('admin.guards.emails.store');
      
        //Key Types
        Route::get('/keytypes', [KeyTypeController::class, 'index'])->name('admin.keytypes.index');

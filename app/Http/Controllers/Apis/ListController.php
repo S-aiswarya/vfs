@@ -16,6 +16,7 @@ use App\Http\Resources\ApplicationBaseResourceCollection;
 use App\Http\Resources\CourseLevelResourceCollection;
 use App\Http\Resources\DocumentTemplateResourceCollection;
 use App\Http\Resources\IntakeResourceCollection;
+use App\Http\Resources\RegisterTypeGroupResourceCollection;
 use App\Models\Agency;
 use App\Models\Application;
 use App\Models\Country;
@@ -46,6 +47,15 @@ class ListController extends Controller
            $register_types->where('register_name', 'LIKE', '%'.$request->keyword.'%');
         $register_types = $register_types->get();
         return response()->json(['data' => $register_types]);
+    }
+
+    public function register_type_groups(Request $request){
+        $groups = Register_type::select('group_name')->groupBy('group_name')->get();
+        foreach($groups as $group){
+            $group->register_types = Register_type::select('id','key_id','register_name','check_out')
+                                ->where('group_name', $group->group_name)->orderBy('sort_order')->get();
+        }
+        return new RegisterTypeGroupResourceCollection($groups);
     }
 
     public function countries(Request $request){

@@ -95,6 +95,7 @@ class TaskController extends Controller
             $offices = $this->getAuthOffices();
             $office_users = $this->getAuthOfficeUsers($offices);
 
+
             $item = $item->where(function($query) use($office_users){
                 $query->whereIn('created_by', $office_users)->orWhereIn('assigned_to_user_id', $office_users);
             });

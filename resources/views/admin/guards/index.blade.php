@@ -56,7 +56,10 @@
                                         <tr>
                                             <th class="nodisplay"></th>
                                             <th class="table-width-10">ID</th>
-                                            <th class="table-width-120">user</th>
+                                            <th class="table-width-120">User</th>
+                                            <th class="table-width-120">Center</th>
+                                            <th class="table-width-120">Sign_in_Time</th>
+                                            <th class="table-width-120">Sign_Out_Time</th>
                                             <th class="table-width-120">Last Updated On</th>
                                             <th class="nosort nosearch table-width-10">@if(auth()->user()->can($permissions['edit'])) Edit @else View @endif</th>
                                             <th class="nosort nosearch table-width-10">Delete</th>
@@ -86,9 +89,9 @@
         var my_columns = [
             {data: 'updated_at', name: 'updated_at'},
             {data: null, name: 'id'},
-            {data: 'users.name', name: 'users.name'},
+            {data: 'user', name: 'users.name'},
+            {data: 'center', name: 'centers.name'},
             {data: 'sign_in_time', name: 'sign_in_time'},
-            {data: 'centers.name', name: 'centers.name'},
             {data: 'sign_out_time', name: 'sign_out_time'},
             {data: 'date', name: 'updated_at'},
             {data: 'action_ajax_edit', name: 'action_ajax_edit'},
