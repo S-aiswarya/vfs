@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth:sanctum', 'type.user']], function(){
     Route::post('user/change-password', [UserAuthController::class, 'changePassword'])->name('app.change-password');
     Route::get('dashboard', [DashboardController::class, 'index'])->name('app.dashboard');
     Route::post('checkin', [VisitorLogController::class, 'Checkin'])->name('app.checkin');
+    Route::post('checkout', [VisitorLogController::class, 'Checkout'])->name('app.checkout');
 
     Route::group(['middleware' => ['type.sales']], function(){
         Route::get('leads', [LeadController::class, 'index'])->name('app.leads.list');

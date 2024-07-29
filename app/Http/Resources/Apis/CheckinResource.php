@@ -21,6 +21,7 @@ class CheckinResource extends JsonResource
          'email' => $this->email,
          'phonenumber'=>$this->phonenumber,
          'token'=>$this->token,
+         'check_in_type_id'=>$this->check_in_type_id,
          'lastUpdatedBy' => $this->updated_by,
          'entry_time' => $this->entry_time,
          'exit_time' => $this->exit_time,

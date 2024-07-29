@@ -18,4 +18,13 @@ class VisitorLogController extends Controller
         $request->validated();
         return $service->store($request->all());
     }
+    public function Checkout(Request $request, VisitorLogService $service){
+        if(!$request->id)
+            return response()->json(['message' => 'Invalid Request'], 400);
+        $item= CheckIn::find($request->id);
+        if(!$item)
+            return response()->json(['message' => 'Invalid Request'], 400);
+        else
+            return $service->update($item);
+    }
 }
