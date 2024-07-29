@@ -31,3 +31,4 @@ class VisitorLogService{
         return new CheckinResource($item);
     }
 
+}
