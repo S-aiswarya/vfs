@@ -35,7 +35,7 @@ class CheckInController extends Controller
     }
     
     protected function getCollection() {
-        return $this->model->select('id', 'name', 'email','phonenumber','created_at', 'updated_at');
+        return $this->model->select('id', 'name','phonenumber','entry_time','exit_time','created_at', 'updated_at');
     }
 
     protected function setDTData($collection) {

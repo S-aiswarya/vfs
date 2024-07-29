@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Apis\UserAuthController;
 use App\Http\Controllers\Apis\TaskChecklistController;
 use App\Http\Controllers\Apis\TaskNoteController;
+use App\Http\Controllers\Apis\VisitorLogController;
 use App\Http\Controllers\Apis\WhatsappController;
 use App\Http\Controllers\Apis\WhatsappTemplateController;
 
@@ -50,6 +51,7 @@ Route::group(['middleware' => ['auth:sanctum', 'type.user']], function(){
     Route::get('get-user', [UserAuthController::class, 'getUser'])->name('app.get-user');
     Route::post('user/change-password', [UserAuthController::class, 'changePassword'])->name('app.change-password');
     Route::get('dashboard', [DashboardController::class, 'index'])->name('app.dashboard');
+    Route::post('checkin', [VisitorLogController::class, 'Checkin'])->name('app.checkin');
 
     Route::group(['middleware' => ['type.sales']], function(){
         Route::get('leads', [LeadController::class, 'index'])->name('app.leads.list');
@@ -199,6 +201,9 @@ Route::group(['middleware' => ['auth:sanctum', 'type.user']], function(){
     Route::get('phone-calls/summary', [PhoneCallController::class, 'summary'])->name('app.phone-calls.summary');
     Route::get('phone-calls/{lead_id}', [PhoneCallController::class, 'index'])->name('app.phone-calls.index');
 
+
+    
+    Route::get('listing/register-types/groups', [ListController::class, 'register_type_groups'])->name('app.listings.register_type_groups');
     Route::get('listing/register-types/groups', [ListController::class, 'register_type_groups'])->name('app.listings.register_type_groups');
     Route::get('listing/register-types', [ListController::class, 'register_types'])->name('app.listings.register_types');
     Route::get('listing/countries', [ListController::class, 'countries'])->name('app.listings.countries');

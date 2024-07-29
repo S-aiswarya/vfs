@@ -25,6 +25,7 @@ class User extends Authenticatable
         'role_id',
         'manager_id',
         'office_country_id',
+        'center_id',
         'address'
     ];
 
@@ -86,6 +87,10 @@ class User extends Authenticatable
 
     public function userTargetsVisaObtained($intake){
         return $this->targets()->where('intake_id', $intake)->value('visa_obtained');
+    }
+    public function center(): BelongsTo
+    {
+        return $this->belongsTo(Center::class, 'center_id','id');
     }
         
 }

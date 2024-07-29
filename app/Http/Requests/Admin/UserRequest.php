@@ -26,7 +26,8 @@ class UserRequest extends FormRequest
             'name' => "required|max:250",
             'email' => "required|email|max:250|unique:users,email,{$ignoreId},id,deleted_at,NULL",
             'phone_number' => "required|max:20|unique:users,phone_number,{$ignoreId},id,deleted_at,NULL",
-            'role_id' => "required"
+            'role_id' => "required",
+            'center_id' => "required_if:role_id=guard->role_id",
         ];
 
         if(!$ignoreId)

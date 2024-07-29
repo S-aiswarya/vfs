@@ -57,8 +57,10 @@
                                             <th class="nodisplay"></th>
                                             <th class="table-width-10">ID</th>
                                             <th class="table-width-120">Name</th>
-                                            <th class="table-width-120">Email</th>
                                             <th class="table-width-120">Phonenumber</th>
+                                            <th class="table-width-120">Token</th>
+                                            <th class="table-width-120">Checkin time</th>
+                                            <th class="table-width-120">Checkout time</th>
                                             <th class="table-width-120">Last Updated On</th>
                                             <th class="nosort nosearch table-width-10">@if(auth()->user()->can($permissions['edit'])) Edit @else View @endif</th>
                                             <th class="nosort nosearch table-width-10">Delete</th>
@@ -89,8 +91,10 @@
             {data: 'updated_at', name: 'updated_at'},
             {data: null, name: 'id'},
             {data: 'name', name: 'name'},
-            {data: 'email', name: 'email'},
             {data: 'phonenumber', name: 'phonenumber'},
+            {data: 'token', name: 'token'},
+            {data: 'entry_time', name: 'entry_time'},
+            {data: 'exit_time', name: 'exit_time'},
             {data: 'date', name: 'updated_at'},
             {data: 'action_ajax_edit', name: 'action_ajax_edit'},
             {data: 'action_delete', name: 'action_delete'}
@@ -107,11 +111,11 @@
                     "email":{
                       required:false,
                       email:true,
-                    }
+                    },
+                    "entry_time":"required",
+                    "exit_time":"required",
+                    
                   },
-                  
-                messages: {
-                },
             });
         };
     </script>

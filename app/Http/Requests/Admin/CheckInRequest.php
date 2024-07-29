@@ -22,16 +22,14 @@ class CheckInRequest extends FormRequest
     public function rules(): array
     {
         
+        
         $ignoreId = ($this->input('id'))?decrypt($this->input('id')):NULL;
         return [
             'name' => 'required|max:250',
             'phonenumber' =>'required|max:250',
+            'email' =>'nullable|email',
              'check_in_type_id' => 'required|exists:check_in_type,id',
-            // 'country_id' => 'required|exists:office_countries,id',
-            // 'city_id' => 'required|exists:cities,id',
-            // 'location_id'=>'required|exists:locations,id',
-            // 'center_id'=>'required|exists:centers,id',
-            // 'gate_id'=>'required|exists:gates,id',
+           
             
         ];
     }

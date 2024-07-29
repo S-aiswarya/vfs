@@ -15,7 +15,6 @@ use DB;
 class VisitorLogController extends Controller
 {
     public function Checkin(CheckInRequest $request, VisitorLogService $service){
-
         $request->validated();
         return $service->store($request->all());
     }

@@ -17,8 +17,10 @@ class CheckinResource extends JsonResource
         // return parent::toArray($request);
         return[
          'id' => $this->id,
-         'name' => $this->email,
+         'name' => $this->name,
+         'email' => $this->email,
          'phonenumber'=>$this->phonenumber,
+         'token'=>$this->token,
          'lastUpdatedBy' => $this->updated_by,
          'entry_time' => $this->entry_time,
          'exit_time' => $this->exit_time,
