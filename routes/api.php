@@ -53,6 +53,8 @@ Route::group(['middleware' => ['auth:sanctum', 'type.user']], function(){
     Route::get('dashboard', [DashboardController::class, 'index'])->name('app.dashboard');
     Route::post('checkin', [VisitorLogController::class, 'Checkin'])->name('app.checkin');
     Route::post('checkout', [VisitorLogController::class, 'Checkout'])->name('app.checkout');
+    Route::get('checkin', [VisitorLogController::class, 'index'])->name('app.checkin');
+
 
     Route::group(['middleware' => ['type.sales']], function(){
         Route::get('leads', [LeadController::class, 'index'])->name('app.leads.list');
