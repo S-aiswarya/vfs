@@ -11,7 +11,7 @@ class VisitorLogService{
     public function store(array $inputData){
         $obj = new CheckIn;
        
-        if(!empty($inputData['entry_time']) )
+        if(empty($inputData['entry_time']) )
         {
             $inputData['entry_time']= date("Y-m-d H:i:s");
         }

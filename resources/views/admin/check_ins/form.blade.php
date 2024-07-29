@@ -75,14 +75,23 @@
   </div> 
 
    <!-- type of check -->
-  <div class="form-group">
+  <!-- <div class="form-group">
       <label for="type_check_id">Type Of Check_In</label>
       <select name="check_in_type_id" id="select" style="width: 100% !important;" class="w-100 webadmin-select2-input form-control" data-parent=".confirm-wrap" data-select2-url="{{route('admin.select2.check_in_type')}}">
-        @if($obj->check_in_type)
+        @if($obj->register_type)
           <option value="{{$obj->check_in_type->id}}" selected="selected">{{$obj->check_in_type->name}}</option>
         @endif
       </select>
-  </div> 
+  </div>  -->
+
+  <div class="form-group">
+      <label for="type_check_id">Type Of Check_In</label>
+      <select name="check_in_type_id" id="select" style="width: 100% !important;" class="w-100 webadmin-select2-input form-control" data-parent=".confirm-wrap" data-select2-url="{{route('admin.select2.register_types')}}">
+        @if($obj->register_types)
+          <option value="{{$obj->register_types->id}}" selected="selected">{{$obj->register_types->register_name}}</option>
+        @endif
+      </select>
+  </div>
 
 
   <div class="form-group">

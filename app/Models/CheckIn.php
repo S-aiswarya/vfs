@@ -11,6 +11,7 @@ use App\Models\Center;
 use App\Models\Country;
 use App\Models\Gate;
 use App\Models\Employ;
+use App\Models\Register_type;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class CheckIn extends Model
@@ -25,10 +26,10 @@ class CheckIn extends Model
 
     protected $dates = ['created_at','updated_at'];
 
-    public function check_in_type(): BelongsTo
-    {
-        return $this->belongsTo(check_in_type::class, 'check_in_type_id','id');
-    }
+    // public function check_in_type(): BelongsTo
+    // {
+    //     return $this->belongsTo(check_in_type::class, 'check_in_type_id','id');
+    // }
     public function country(): BelongsTo
     {
         return $this->belongsTo(Country::class, 'country_id','id');
@@ -56,6 +57,10 @@ class CheckIn extends Model
     public function employees(): BelongsTo
     {
         return $this->belongsTo(Employ::class,'employ_id','id');
+    }
+    public function register_types(): BelongsTo
+    {
+        return $this->belongsTo(Register_type::class,'check_in_type_id','id');
     }
    
 

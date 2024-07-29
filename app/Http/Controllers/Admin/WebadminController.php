@@ -147,6 +147,15 @@ class WebadminController extends Controller {
         }
         return \Response::json($json);
     }
+    public function select2_register_types(Request $request){
+        $items = DB::table('register_types')->where('register_name', 'like', $request->q.'%')->orderBy('register_name')->whereNull('deleted_at')
+            ->get();
+        $json = [];
+        foreach($items as $c){
+            $json[] = ['id'=>$c->id, 'text'=>$c->register_name];
+        }
+        return \Response::json($json);
+    }
 
     public function select2_employees(Request $request){
         $items = DB::table('employees')->where('employ_name', 'like', $request->q.'%')->orderBy('employ_name')->whereNull('deleted_at')

@@ -59,6 +59,7 @@ Route::group(['prefix' => $prefix, 'middleware' => ['web']], function () use($mi
         Route::get('/select2/centers', [WebadminController::class, 'select2_centers'])->name('admin.select2.centers');
         Route::get('/select2/gates', [WebadminController::class, 'select2_gates'])->name('admin.select2.gates');
         Route::get('/select2/key_types', [WebadminController::class, 'select2_key_types'])->name('admin.select2.key_types');
+        Route::get('/select2/register_types', [WebadminController::class, 'select2_register_types'])->name('admin.select2.register_types');
         Route::get('/select2/check_in_type', [WebadminController::class, 'select2_check_in_type'])->name('admin.select2.check_in_type');
         Route::get('/select2/stages/{type?}', [WebadminController::class, 'select2_stages'])->name('admin.select2.stages');
         Route::get('/select2/users/{role?}', [WebadminController::class, 'select2_users'])->name('admin.select2.users');
