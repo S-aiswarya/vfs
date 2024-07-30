@@ -24,9 +24,10 @@ class VisitorLogService{
         }
     }
 
-    public function update(CheckIn $item)
+    public function update(CheckIn $item, $note=null)
     {
         $item->exit_time = date('Y-m-d H:i:s');
+        $item->checkout_note = $note;
         $item->save();
         return new CheckinResource($item);
     }

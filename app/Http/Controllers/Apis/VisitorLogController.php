@@ -25,7 +25,7 @@ class VisitorLogController extends Controller
         if(!$item)
             return response()->json(['message' => 'Invalid Request'], 400);
         else
-            return $service->update($item);
+            return $service->update($item, $request->note);
     }
 
     public function index(Request $request){

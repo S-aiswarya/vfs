@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Admin\BaseController as Controller;
 use App\Http\Requests\Admin\GuardRequest;
 use App\Models\Guard;
+use App\Models\User;
+use App\Models\Center;
 use App\Helpers\BladeHelper;
 use App\Traits\ResourceTrait;
 use Illuminate\Http\Request;

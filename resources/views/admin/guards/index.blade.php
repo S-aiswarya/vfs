@@ -58,8 +58,8 @@
                                             <th class="table-width-10">ID</th>
                                             <th class="table-width-120">User</th>
                                             <th class="table-width-120">Center</th>
-                                            <th class="table-width-120">Sign_in_Time</th>
-                                            <th class="table-width-120">Sign_Out_Time</th>
+                                            <th class="table-width-120">Sign_in Time</th>
+                                            <th class="table-width-120">Sign_Out Time</th>
                                             <th class="table-width-120">Last Updated On</th>
                                             <th class="nosort nosearch table-width-10">@if(auth()->user()->can($permissions['edit'])) Edit @else View @endif</th>
                                             <th class="nosort nosearch table-width-10">Delete</th>
@@ -106,6 +106,8 @@
                 rules: {
                    'user_id':'required',
                    'center_id':'required',
+                   'sign_in_time':'required',
+                   'sign_out_time':'required',
                   },
                   
             });

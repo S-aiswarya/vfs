@@ -26,14 +26,7 @@
             </select>
         </div>
 
-        <div class="form-group">
-            <label for="center">Center</label>
-            <select name="center_id" style="width: 100% !important;" class="w-100 webadmin-select2-input form-control" data-parent=".confirm-wrap" data-select2-url="{{route('admin.select2.centers')}}">
-              @if($obj->center)
-                <option value="{{$obj->center->id}}" selected="selected">{{$obj->center->name}}</option>
-              @endif
-            </select>
-        </div>
+       
         
       <div id="branch-div" class="form-group col-12">
             <label for="name">Offices</label>

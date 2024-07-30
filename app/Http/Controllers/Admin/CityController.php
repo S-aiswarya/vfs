@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Admin\BaseController as Controller;
 use App\Traits\ResourceTrait;
 use App\Http\Requests\Admin\CityRequest;
-use App\models\City;
+use App\Models\City;
 use App\Helpers\BladeHelper;
 use Illuminate\Http\Request;
 

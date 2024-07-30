@@ -24,13 +24,10 @@ class CenterController extends Controller
         $this->views = 'admin.centers';
 
         $this->permissions = ['list'=>'center_listing', 'create'=>'center_adding', 'edit'=>'center_editing', 'delete'=>'center_deleting'];
-       
-
         $this->resourceConstruct();
 
     }
    
-    
     protected function getCollection() {
         return $this->model->select('centers.*','locations.name as location')->join('locations','locations.id', '=', 'centers.location_id');
     }
