@@ -107,7 +107,7 @@
                     "location_id": "required",
                 },
                 messages: {
-                    "name": "Location name cannot be blank",
+                    "name": "center name cannot be blank",
                 },
             });
         };
