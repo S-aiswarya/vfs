@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\CenterRequest;
 use App\Models\Center;
 use App\Helpers\BladeHelper;
 use App\Traits\ResourceTrait;
+
 use Illuminate\Http\Request;
 
 class CenterController extends Controller
