@@ -49,6 +49,8 @@ class RegistertypeController extends Controller
     {
         $request->validated();
         $data = $request->all();
+
+        
         $data['flag'] = $this->uploadImage($request, 'flag', 'country/flags');
         if($obj = $this->_store($data)){
             return response()->json($this->_renderEdit($obj, 'Register successfully saved!'));
