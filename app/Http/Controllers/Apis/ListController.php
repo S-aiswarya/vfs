@@ -17,8 +17,16 @@ use App\Http\Resources\CourseLevelResourceCollection;
 use App\Http\Resources\DocumentTemplateResourceCollection;
 use App\Http\Resources\IntakeResourceCollection;
 use App\Http\Resources\RegisterTypeGroupResourceCollection;
+use App\Http\Resources\CityResourceCollection;
+use App\Http\Resources\LocationResourceCollection;
+use App\Http\Resources\CenterResourceCollection;
+use App\Http\Resources\GateResourceCollection;
 use App\Models\Agency;
 use App\Models\Application;
+use App\Models\Gate;
+use App\Models\Center;
+use App\Models\Location;
+use App\Models\City;
 use App\Models\Country;
 use App\Models\Course;
 use App\Models\DocumentTemplate;
@@ -65,6 +73,47 @@ class ListController extends Controller
         $countries = $countries->get();
         return new CountryResourceCollection($countries);
     }
+
+    public function cities(Request $request){
+        $cities = new City;
+        if($request->country_id)
+            $cities = $cities->where('country_id', $request->country_id);
+        if($request->keyword)
+            $cities = $cities->where('name', 'LIKE', '%'.$request->keyword.'%');
+        $cities = $cities->get();
+        return new CityResourceCollection($cities);
+    }
+
+    public function locations(Request $request){
+        $locations = new Location;
+        if($request->city_id);
+        $locations = $locations->where('city_id', $request->city_id);
+        if($request->keyword)
+        $locations = $locations->where('name', 'LIKE', '%'.$request->keyword.'%');
+        $locations= $locations->get();
+        return new LocationResourceCollection($locations);
+    }
+   
+    public function centers(Request $request){
+        $centers = new Center;
+        if($request->location_id);
+        $centers = $centers->where('location_id', $request->location_id);
+        if($request->keyword)
+        $centers = $centers->where('name', 'LIKE', '%'.$request->keyword.'%');
+        $centers= $centers->get();
+        return new CenterResourceCollection($centers);
+    }
+
+    public function gates(Request $request){
+        $gates = new Gate;
+        if($request->center_id);
+        $gates = $gates->where('center_id', $request->center_id);
+        if($request->keyword)
+        $gates = $gates->where('name', 'LIKE', '%'.$request->keyword.'%');
+        $gates= $gates->get();
+        return new GateResourceCollection($gates);
+    }
+    
 
     public function applications(Request $request){
         $applications = new Application;

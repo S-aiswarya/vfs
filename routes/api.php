@@ -209,6 +209,11 @@ Route::group(['middleware' => ['auth:sanctum', 'type.user']], function(){
     Route::get('listing/register-types/groups', [ListController::class, 'register_type_groups'])->name('app.listings.register_type_groups');
     Route::get('listing/register-types/groups', [ListController::class, 'register_type_groups'])->name('app.listings.register_type_groups');
     Route::get('listing/register-types', [ListController::class, 'register_types'])->name('app.listings.register_types');
+    Route::get('listing/register-types', [ListController::class, 'register_types'])->name('app.listings.register_types');
+    Route::get('listing/gates', [ListController::class, 'gates'])->name('app.listings.gates');
+    Route::get('listing/centers', [ListController::class, 'centers'])->name('app.listings.centers');
+    Route::get('listing/locations', [ListController::class, 'locations'])->name('app.listings.locations');
+    Route::get('listing/cities', [ListController::class, 'cities'])->name('app.listings.cities');
     Route::get('listing/countries', [ListController::class, 'countries'])->name('app.listings.countries');
     Route::get('listing/applications', [ListController::class, 'applications'])->name('app.listings.applications');
     Route::get('listing/subject-areas', [ListController::class, 'subject_areas'])->name('app.listings.subject-areas');
