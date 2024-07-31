@@ -104,7 +104,7 @@
                 ignore: [],
                 rules: {
                     "name": "required",
-                    "location_id": "required",
+                    
                 },
                 messages: {
                     "name": "center name cannot be blank",
