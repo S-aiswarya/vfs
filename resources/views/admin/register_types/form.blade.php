@@ -24,9 +24,9 @@
       <div class="form-group">
             <label for="name">Checkin_required</label>
                <select name="checkin_required" style="width: 100% !important;" class="w-100 webadmin-select2-input form-control" data-parent=".confirm-wrap" >
-                
-                <option value="1" @if($obj->checkin_required == 1) selected="selected" @endif selected="selected">yes</option>
-                <option value="0"   @if($obj->checkin_required == 0) selected="selected" @endif selected="selected"selected="selected">no</option>
+               <option value="">Select</option>
+                <option value="1" @if($obj->checkin_required == 1) selected="selected" @endif >Yes</option>
+                <option value="0"   @if($obj->checkin_required == 0) selected="selected" @endif >No</option>
             </select>
         </div>
 

@@ -38,7 +38,7 @@ class CheckIn extends Model
     {
         return $this->belongsTo(City::class, 'city_id','id');
     }
-    public function location(): BelongsTo
+    public function center_location(): BelongsTo
     {
         return $this->belongsTo(Location::class, 'location_id','id');
     }
