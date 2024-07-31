@@ -28,7 +28,7 @@ class CheckInRequest extends FormRequest
             'name' => 'required|max:250',
             'phonenumber' =>'required|max:250',
             'email' =>'nullable|email',
-             'check_in_type_id' => 'required|exists:register_types,id',
+            'check_in_type_id' => 'required|exists:register_types,id',
            
             
         ];

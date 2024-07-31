@@ -91,7 +91,7 @@
             {data: 'location', name: 'locations.name'},
             {data: 'name', name: 'name'},
             {data: 'address', name: 'address'},
-            {data: 'token', name: 'token'},
+            {data: 'token_prefix', name: 'token'},
             {data: 'date', name: 'updated_at'},
             {data: 'action_ajax_edit', name: 'action_ajax_edit'},
             {data: 'action_delete', name: 'action_delete'}

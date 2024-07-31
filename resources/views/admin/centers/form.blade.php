@@ -25,7 +25,7 @@
 
       <div class="form-group">
         <label for="name">Token</label>
-        <input type="text" class="form-control" id="token" name="token" value="{{$obj->token}}">
+        <input type="text" class="form-control" id="token_prefix" name="token_prefix" value="{{$obj->token_prefix}}">
       </div>
         
       <div class="form-group col-md-12">
@@ -33,7 +33,7 @@
           <textarea name="address" class="form-control" rows="2" id="address">{{$obj->address}}</textarea>
       </div>
       
-    </div>
+    </dCeniv>
     <div class="row">
       <div class="text-right">
           <button type="submit" class="btn btn-primary px-4" data-validation-fn="adminValidate" data-reload-type="hard">Submit</button>
