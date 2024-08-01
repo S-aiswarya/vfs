@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Apis;
 
+use App\Http\Resources\CheckinTypeResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -22,6 +23,7 @@ class CheckinResource extends JsonResource
          'phonenumber'=>$this->phonenumber,
          'token'=>$this->token,
          'check_in_type_id'=>$this->check_in_type_id,
+         'checkin'=>new CheckinTypeResource($this->register_types),
          'lastUpdatedBy' => $this->updated_by,
          'entry_time' => $this->entry_time,
          'exit_time' => $this->exit_time,
