@@ -86,17 +86,17 @@ class ListController extends Controller
 
     public function locations(Request $request){
         $locations = new Location;
-        if($request->city_id);
-        $locations = $locations->where('city_id', $request->city_id);
+        if($request->city_id)
+            $locations = $locations->where('city_id', $request->city_id);
         if($request->keyword)
-        $locations = $locations->where('name', 'LIKE', '%'.$request->keyword.'%');
+            $locations = $locations->where('name', 'LIKE', '%'.$request->keyword.'%');
         $locations= $locations->get();
         return new LocationResourceCollection($locations);
     }
    
     public function centers(Request $request){
         $centers = new Center;
-        if($request->location_id);
+        if($request->location_id)
         $centers = $centers->where('location_id', $request->location_id);
         if($request->keyword)
         $centers = $centers->where('name', 'LIKE', '%'.$request->keyword.'%');
