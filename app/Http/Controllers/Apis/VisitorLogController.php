@@ -54,7 +54,7 @@ class VisitorLogController extends Controller
             $items = $items->where('token', $data['token']);
         }
 
-        
+        if(auth()->user)
         $order_field = 'updated_at';
         $order_dir = 'DESC';
         if(isset($data['sort_field']) && trim($data['sort_field']) != "")

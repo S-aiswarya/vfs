@@ -29,10 +29,21 @@ class Guard extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id','id');
-    }   
+    } 
 
+
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(City::class, 'city_id','id');
+    }
+
+   
     public function center(): BelongsTo
     {
         return $this->belongsTo(Center::class, 'center_id','id');
     }
+
+    
+
+   
 }

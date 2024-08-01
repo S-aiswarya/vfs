@@ -25,7 +25,10 @@ class User extends Authenticatable
         'role_id',
         'manager_id',
         'office_country_id',
+        'city_id',
+        'location_id',
         'center_id',
+        'gate_id',
         'address'
     ];
 
@@ -88,9 +91,27 @@ class User extends Authenticatable
     public function userTargetsVisaObtained($intake){
         return $this->targets()->where('intake_id', $intake)->value('visa_obtained');
     }
+
+    
+
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(City::class, 'city_id','id');
+    }
+
+    public function center_location(): BelongsTo
+    {
+        return $this->belongsTo(Location::class, 'location_id','id');
+    }
+
     public function center(): BelongsTo
     {
         return $this->belongsTo(Center::class, 'center_id','id');
     }
+
+    public function gate(): BelongsTo
+    {
+        return $this->belongsTo(Gate::class, 'gate_id','id');
+    } 
         
 }

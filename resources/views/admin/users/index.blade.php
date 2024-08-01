@@ -60,7 +60,7 @@
                                             <th class="table-width-120">Email</th>
                                             <th class="table-width-120">Phone</th>
                                             <th class="table-width-120">Country</th>
-                                            <th class="nosort nosearch table-width-120">Offices</th>
+                                            <!-- <th class="nosort nosearch table-width-120">Offices</th> -->
                                             <th class="nosort nosearch table-width-10">Status</th>
                                             <th class="nosort nosearch table-width-10">@if(auth()->user()->can($permissions['edit'])) Targets @endif</th>
                                             <th class="nosort nosearch table-width-10">@if(auth()->user()->can($permissions['edit'])) Edit @else View @endif</th>
@@ -96,7 +96,7 @@
             {data: 'email', name: 'email'},
             {data: 'phone_number', name: 'phone_number'},
             {data: 'office_country', name: 'office_countries.name'},
-            {data: 'offices', name: 'offices'},
+            // {data: 'offices', name: 'offices'},
             {data: 'status', name: 'status'},
             {data: 'action_targets', name: 'action_targets'},
             {data: 'action_ajax_edit', name: 'action_ajax_edit'},

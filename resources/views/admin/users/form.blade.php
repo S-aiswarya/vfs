@@ -26,29 +26,48 @@
             </select>
         </div>
 
-       
+       <!-- City -->
+  <div class="form-group">
+      <label for="city">City</label>
+      <select name="city_id" style="width: 100% !important;" class="w-100 webadmin-select2-input form-control" data-parent=".confirm-wrap" data-select2-url="{{route('admin.select2.cities')}}">
+        @if($obj->city)
+          <option value="{{$obj->city->id}}" selected="selected">{{$obj->city->name}}</option>
+        @endif
+      </select>
+  </div> 
+
+
+  <!-- Location -->
+  <div class="form-group">
+      <label for="location">Location</label>
+      <select name="location_id"  style="width: 100% !important;" class="w-100 webadmin-select2-input form-control" data-parent=".confirm-wrap" data-select2-url="{{route('admin.select2.locations')}}">
+        @if($obj->center_location)
+          <option value="{{$obj->center_location->id}}" selected="selected">{{$obj->center_location->name}}</option>
+        @endif
+      </select>
+  </div> 
+
+  <!-- Center -->
+  <div class="form-group">
+      <label for="name">Center</label>
+      <select name="center_id" style="width: 100% !important;" class="w-100 webadmin-select2-input form-control" data-parent=".confirm-wrap" data-select2-url="{{route('admin.select2.centers')}}">
+        @if($obj->center)
+          <option value="{{$obj->center->id}}" selected="selected">{{$obj->center->name}}</option>
+        @endif
+      </select>
+  </div> 
+
+  <!-- Gate -->
+  <div class="form-group">
+      <label for="gate">Gate</label>
+      <select name="gate_id"  style="width: 100% !important;" class="w-100 webadmin-select2-input form-control" data-parent=".confirm-wrap" data-select2-url="{{route('admin.select2.gates')}}">
+        @if($obj->gate)
+          <option value="{{$obj->gate->id}}" selected="selected">{{$obj->gate->name}}</option>
+        @endif
+      </select>
+  </div> 
         
-      <div id="branch-div" class="form-group col-12">
-            <label for="name">Offices</label>
-            @if($obj->role_id == 6)
-              <select name="offices[]" multiple style="width: 100% !important;" class="w-100 webadmin-select2-input form-control" data-parent=".confirm-wrap" data-select2-url="{{route('admin.select2.branches')}}">
-                @if(count($obj->applicationCoordinatorOffices))
-                  @foreach($obj->applicationCoordinatorOffices as $office)
-                    <option value="{{$office->id}}" selected="selected" >{{$office->name}}</option>
-                  @endforeach
-                @endif
-              </select>
-            @else
-              <select name="offices[]" multiple style="width: 100% !important;" class="w-100 webadmin-select2-input form-control" data-parent=".confirm-wrap" data-select2-url="{{route('admin.select2.branches')}}">
-                @if(count($obj->offices))
-                  @foreach($obj->offices as $office)
-                    <option value="{{$office->id}}" selected="selected" >{{$office->name}}</option>
-                  @endforeach
-                @endif
-              </select>
-            @endif
-        </div>
-      <div id="manager-div" class="form-group col-12" @if($obj->role_id != 5) style="display:none;" @endif>
+       
             <label for="name">Manager</label>
             <select name="manager_id" id="manager_id" style="width: 100% !important;" class="w-100 webadmin-select2-input form-control" data-parent=".confirm-wrap" data-select2-url="{{route('admin.select2.users', [4])}}">
               @if($obj->manager)

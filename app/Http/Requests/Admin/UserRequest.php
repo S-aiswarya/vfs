@@ -27,7 +27,11 @@ class UserRequest extends FormRequest
             'email' => "required|email|max:250|unique:users,email,{$ignoreId},id,deleted_at,NULL",
             'phone_number' => "required|max:20|unique:users,phone_number,{$ignoreId},id,deleted_at,NULL",
             'role_id' => "required",
-            'center_id' => "required_if:role_id=guard->role_id",
+            'center_id' => "required_if:role_id, ==, 6",
+            'location_id'=>"required_if:role_id, ==, 6",
+            'city_id'=>"required_if:role_id, ==, 6",
+            'office_country_id'=>"required_if:role_id, ==, 6",
+            'gate_id'=>"required_if:role_id, ==, 6",
         ];
 
         if(!$ignoreId)
