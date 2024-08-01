@@ -106,7 +106,7 @@ class ListController extends Controller
 
     public function gates(Request $request){
         $gates = new Gate;
-        if($request->center_id);
+        if($request->center_id)
         $gates = $gates->where('center_id', $request->center_id);
         if($request->keyword)
         $gates = $gates->where('name', 'LIKE', '%'.$request->keyword.'%');
