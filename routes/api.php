@@ -54,6 +54,7 @@ Route::group(['middleware' => ['auth:sanctum', 'type.user']], function(){
     Route::post('checkin', [VisitorLogController::class, 'Checkin'])->name('app.checkin');
     Route::post('checkout', [VisitorLogController::class, 'Checkout'])->name('app.checkout');
     Route::get('checkin', [VisitorLogController::class, 'index'])->name('app.checkin');
+    Route::post('user-verify',[UserAuthController::class, 'update'])->name('app.user-verify');
 
 
     Route::group(['middleware' => ['type.sales']], function(){

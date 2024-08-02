@@ -100,14 +100,7 @@ class CheckinResource extends JsonResource
          'refillig_date' =>$this->refillig_date,
          'expiry_date' =>$this->expiry_date,
          'inspection_date' =>$this->inspection_date,
-         'next_due_date' =>$this->next_due_date,
-
-
-
-
-         
-
-        
+         'next_due_date' =>$this->next_due_date, 
         ];
     }
 }

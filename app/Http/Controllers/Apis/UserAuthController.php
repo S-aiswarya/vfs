@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Apis;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\UserLoginRequest;
+use App\Http\Requests\Auth\UserUpdateRequest;
+use App\Services\UserService;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\ForgotPasswordRequest;
 use App\Http\Requests\ForgotPasswordSaveRequest;
@@ -29,6 +31,19 @@ class UserAuthController extends Controller
 
         return new UserResource($user);
     }
+
+
+     
+     public function update(UserUpdateRequest $request, UserService $service){
+        $request->validated();
+        $item= User::find($request->id);
+        if(!$item)
+            return response()->json(['message' => 'Invalid Request'], 400);
+        else
+            return $service->update($item, $request);   
+     }
+
+
 
     protected function role($id){
         $access_role = null;
