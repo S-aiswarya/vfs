@@ -28,15 +28,15 @@
                             <div class="page-title-box">
                                 <div class="row">
                                     <div class="col">
-                                        <h4 class="page-title">All Locations</h4>
+                                        <h4 class="page-title">All Buildings</h4>
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Admin</a></li>
-                                            <li class="breadcrumb-item active">All Locations</li>
+                                            <li class="breadcrumb-item active">All Buildings</li>
                                         </ol>
                                     </div><!--end col-->
                                     @if(auth()->user()->can($permissions['create']))
                                      <div class="col-auto align-self-center">
-                                        <a class=" btn btn-sm btn-primary webadmin-open-ajax-popup" title="Create Location" href="{{route($route.'.create')}}" role="button"><i class="fas fa-plus mr-2"></i>Create New</a>
+                                        <a class=" btn btn-sm btn-primary webadmin-open-ajax-popup" title="Create Buildings" href="{{route($route.'.create')}}" role="button"><i class="fas fa-plus mr-2"></i>Create New</a>
                                     </div>
                                     @endif
                                 </div><!--end row-->                                                              

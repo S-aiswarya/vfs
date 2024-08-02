@@ -63,10 +63,13 @@ class VisitorLogController extends Controller
             $items = $items->where('token', $data['token']);
         }
 
-        if(auth()->user()->role_id == 6)
-          {
-            $items = $items->where('created_by',$data['auth()->user()->id']);
-          }
+        if(!empty($data['center_id'])){
+            $items = $items->where('center_id', $data['center_id']);
+        }
+
+        if(!empty($data['gate_id'])){
+            $items = $items->where('token', $data['gate_id']);
+        }
 
 
         $order_field = 'updated_at';

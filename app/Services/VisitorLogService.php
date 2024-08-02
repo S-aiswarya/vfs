@@ -15,6 +15,8 @@ class VisitorLogService{
         {
             $inputData['entry_time']= date("Y-m-d H:i:s");
         }
+        $inputData['center_id'] = auth()->user()?->center?->id;
+        $inputData['gate_id'] = auth()->user()?->gate?->id;
         $obj->fill($inputData);
         if($obj->save()){
             $token = (auth()->user()->center)?auth()->user()->center->token_prefix:'VFS'.$obj->id;
