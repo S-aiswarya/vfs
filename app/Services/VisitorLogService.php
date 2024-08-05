@@ -21,7 +21,8 @@ class VisitorLogService{
         $obj->fill($inputData);
         if($obj->save()){
             $obj->refresh();
-            $token = (auth()->user()?->center)?auth()->user()->center->token_prefix:'VFS'.$obj->id;
+            $token_prefix = (auth()->user()?->center)?auth()->user()->center->token_prefix:'VFS';
+            $token = $token_prefix.$obj->id;
             $obj->token=$token;
             $obj->save();
             
