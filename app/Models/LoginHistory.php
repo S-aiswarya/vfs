@@ -20,9 +20,9 @@ class LoginHistory extends Model
 
     protected $table = 'login_history';
     
-    protected $guarded = ['id', 'created_by', 'updated_by', 'created_at', 'updated_at', 'deleted_at'];
+    protected $guarded = ['id'];
 
-    protected $dates = ['created_at','updated_at'];
+   
 
     protected function setRules() {
 
