@@ -77,7 +77,7 @@ class VisitorLogController extends Controller
         }
 
         if(!empty($data['gate_id'])){
-            $items = $items->where('token', $data['gate_id']);
+            $items = $items->where('gate_id', $data['gate_id']);
         }
 
 

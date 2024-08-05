@@ -77,7 +77,7 @@
 @section('footer')
     <script>
         var my_columns = [
-           // {data: 'created_at', name: 'created_at'},
+            {data: 'created_at', name: 'created_at'},
             {data: null, name: 'id'},
             {data: 'user_name', name: 'users.name'},
             {data: 'action', name: 'action'},
