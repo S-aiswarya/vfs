@@ -21,11 +21,12 @@ class UserService{
         return new UserResource($item);
     }
 
-    public function saveCheckinHistory($checkin_type, $user_id=null ){
+    public function saveCheckinHistory($ip,$checkin_type, $user_id=null ){
         $obj = new LoginHistory();
         $obj->user_id= ($user_id)?$user_id:auth()->user()->id;
         $obj->action=$checkin_type;
         $obj->action_time=date("Y-m-d H:i:s");
+        $obj->ip_address=$ip;
         $obj->save();
         
     }

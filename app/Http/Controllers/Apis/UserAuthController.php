@@ -15,9 +15,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Str, DB;
+use App\Traits\ClientInfoTrait;
 
 class UserAuthController extends Controller
 {
+    use ClientInfoTrait;
     public function login(UserLoginRequest $request){
         $request->validated();
 
@@ -41,7 +43,8 @@ class UserAuthController extends Controller
      
     public function Sign_out(){
         $checkin = new UserService();
-        $checkin->saveCheckinHistory('sign_out');
+        $ip=$this->get_ip();
+        $checkin->saveCheckinHistory($ip,'sign_out');
 
     }
 
