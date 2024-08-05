@@ -28,10 +28,22 @@ class UserAuthController extends Controller
         }
         
         $user->token = $user->createToken('auth_token', ['role:user', $this->role($user->role_id)])->plainTextToken;
+        
+
+         $checkin = new UserService();
+         $checkin->saveCheckinHistory('sign_in',$user->id);
 
         return new UserResource($user);
     }
 
+
+      
+     
+    public function Sign_out(){
+        $checkin = new UserService();
+        $checkin->saveCheckinHistory('sign_out');
+
+    }
 
      
      public function update(UserUpdateRequest $request, UserService $service){
@@ -43,6 +55,7 @@ class UserAuthController extends Controller
             return $service->update($item, $request);   
      }
 
+   
 
 
     protected function role($id){

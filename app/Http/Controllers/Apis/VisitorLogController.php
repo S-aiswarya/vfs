@@ -33,6 +33,13 @@ class VisitorLogController extends Controller
             return $service->update($item, $request->note);
     }
 
+    
+   
+// public function Checkout_user(CheckInRequest $request){
+//     $request->validated();
+
+// }
+    
 
 
 

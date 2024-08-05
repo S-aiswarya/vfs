@@ -22,6 +22,7 @@ class VisitorLogService{
             $token = (auth()->user()->center)?auth()->user()->center->token_prefix:'VFS'.$obj->id;
             $obj->token=$token;
             $obj->save();
+            
             return new CheckinResource($obj);
         }
     }

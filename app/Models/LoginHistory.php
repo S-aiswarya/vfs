@@ -37,11 +37,10 @@ class LoginHistory extends Model
         return $this->parent_validate($data);
     }
 
+ 
    public function user()
    {
-
     return $this->belongsTo(User::class,'user_id','id');
-
    }
 
 }

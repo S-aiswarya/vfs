@@ -28,7 +28,7 @@ class LoginHistoryController extends Controller
     }
 
     protected function getCollection() {
-        return $this->model->select('login_history.*', 'users.name as user_name')->leftJoin('users', 'users.id', '=', 'login_history.users_id');
+        return $this->model->select('login_history.*', 'users.name as name')->leftJoin('users', 'users.id', '=', 'login_history.users_id');
     }
 
     protected function setDTData($collection) {
