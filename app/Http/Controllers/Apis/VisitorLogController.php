@@ -69,6 +69,10 @@ class VisitorLogController extends Controller
         if(!empty($data['token'])){
             $items = $items->where('token', $data['token']);
         }
+         
+        if(!empty($data['location_id'])){
+            $items = $items->where('location_id', $data['location_id']);
+        }
 
         if(!empty($data['center_id'])){
             $items = $items->where('center_id', $data['center_id']);
