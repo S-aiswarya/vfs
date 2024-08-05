@@ -31,9 +31,9 @@ class UserAuthController extends Controller
         
         $user->token = $user->createToken('auth_token', ['role:user', $this->role($user->role_id)])->plainTextToken;
         
-
+         $ip=$this->get_ip();
          $checkin = new UserService();
-         $checkin->saveCheckinHistory('sign_in',$user->id);
+         $checkin->saveCheckinHistory($ip, 'sign_in', $user->id);
 
         return new UserResource($user);
     }
