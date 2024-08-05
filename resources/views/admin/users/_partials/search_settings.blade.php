@@ -18,13 +18,13 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <!-- <div class="col-md-3">
                             <div class="form-group">
                                 <label for="useremail">Office</label>
                                 <select name="user_office-offices" class="webadmin-select2-input datatable-advanced-search form-control" data-placeholder="All" data-select2-url="{{route('admin.select2.branches')}}">
                                 </select>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-md-2">
                             <div class="form-group mt-4">
                                 <button type="button" class="btn btn-primary px-4" onclick="dt();">Filter</button>
