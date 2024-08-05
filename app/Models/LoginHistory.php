@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\BaseModel as Model;
 use App\Traits\ValidationTrait;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class LoginHistory extends Model

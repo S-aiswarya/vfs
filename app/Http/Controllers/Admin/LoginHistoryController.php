@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\BaseController as Controller;
 use App\Traits\ResourceTrait;
 
 use Illuminate\Http\Request;
-
+use App\Models\User;
 use App\Models\LoginHistory;
 use View,Redirect, DB;
 
@@ -28,7 +28,7 @@ class LoginHistoryController extends Controller
     }
 
     protected function getCollection() {
-        return $this->model->select('login_history.*','users.name as user_name')->join('users','users.id', '=', 'login_history.user_id');
+        return $this->model->select('login_history.*','users.name as user_name')->join('users','users.id','=', 'login_history.user_id');
     }
 
     protected function setDTData($collection) {

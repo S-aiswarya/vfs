@@ -62,7 +62,7 @@
                                             <th class="table-width-120">Country</th>
                                             <!-- <th class="nosort nosearch table-width-120">Offices</th> -->
                                             <th class="nosort nosearch table-width-10">Status</th>
-                                            <th class="nosort nosearch table-width-10">@if(auth()->user()->can($permissions['edit'])) Targets @endif</th>
+                                          <!-- <th class="nosort nosearch table-width-10">@if(auth()->user()->can($permissions['edit'])) Targets @endif</th> -->
                                             <th class="nosort nosearch table-width-10">@if(auth()->user()->can($permissions['edit'])) Edit @else View @endif</th>
                                             <th class="nosort nosearch table-width-10">Delete</th>
                                         </tr>
@@ -98,7 +98,7 @@
             {data: 'office_country', name: 'office_countries.name'},
             // {data: 'offices', name: 'offices'},
             {data: 'status', name: 'status'},
-            {data: 'action_targets', name: 'action_targets'},
+           // {data: 'action_targets', name: 'action_targets'},
             {data: 'action_ajax_edit', name: 'action_ajax_edit'},
             {data: 'action_delete', name: 'action_delete'}
         ];
@@ -177,11 +177,11 @@
                     $('#manager-div').hide();
             });
 
-            $(document).on('change', '#office_id', function(){
-                if($('#manage_id').length){
+            // $(document).on('change', '#office_id', function(){
+            //     if($('#manage_id').length){
                     
-                }
-            })
+            //     }
+            // })
 
             $(document).on('change', '#intake_id', function(){
                 let url = $(this).find(':selected').data('url');

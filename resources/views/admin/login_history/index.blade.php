@@ -84,7 +84,7 @@
             {data: 'action_time', name: 'action_time'},
             {data: 'ip_address', name: 'ip_address'},
             {data: 'date', name: 'date'},
-             {data: 'action_delete', name: 'action_delete'}
+            {data: 'action_delete', name: 'action_delete'}
         ];
         var slno_i = 0;
         var order = [0, 'desc'];
