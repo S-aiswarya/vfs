@@ -49,7 +49,7 @@ class UserAuthController extends Controller
     }
 
      
-     public function update(UserUpdateRequest $request, UserService $service){
+     public function userVerify(UserUpdateRequest $request, UserService $service){
         $request->validated();
         $item= User::find($request->id);
         if(!$item)

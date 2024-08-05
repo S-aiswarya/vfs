@@ -22,7 +22,6 @@ class UserUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            
             'center_id' => 'required|exists:centers,id',
             'gate_id' => 'required|exists:gates,id',
         ];

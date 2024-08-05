@@ -23,7 +23,7 @@ class CheckinResource extends JsonResource
          'phonenumber'=>$this->phonenumber,
          'token'=>$this->token,
          'check_in_type_id'=>$this->check_in_type_id,
-         //'location_id'=>$this->location_id,
+         
          'checkin'=>new CheckinTypeResource($this->register_types),
          'lastUpdatedBy' => $this->updated_by,
          'entry_time' => $this->entry_time,
