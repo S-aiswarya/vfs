@@ -47,7 +47,7 @@ Route::post('leads/public/store', [LeadController::class, 'publicStore'])->name(
 Route::get('events/form/{token}', [EventController::class, 'form'])->name('app.events.view');
 Route::post('events/registrations/store', [EventRegistrationController::class, 'store'])->name('app.events.registrations.store');
 
-Route::group(['middleware' => ['auth:sanctum', 'type.user']], function(){
+Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('get-user', [UserAuthController::class, 'getUser'])->name('app.get-user');
     Route::post('user/change-password', [UserAuthController::class, 'changePassword'])->name('app.change-password');
     Route::get('dashboard', [DashboardController::class, 'index'])->name('app.dashboard');
