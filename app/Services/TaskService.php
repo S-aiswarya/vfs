@@ -30,17 +30,23 @@ class TaskService{
         return response()->json(['message' => 'Error'], 500);
     }
 
+
+
     public function update(array $inputData)
     {
         $inputData = $this->processData($inputData);
         $id = $inputData['id'];
         if($obj = Task::find($id)){
+
             if($obj->update($inputData)){
-                $this->createTimeline('task_updated', $obj);
+                      $this->createTimeline('task_updated', $obj);
+                      
                 if($obj->lead_id)
                     $this->createLeadTimeline('task_updated', $obj, $obj->application_id);
+
                 if(!empty($inputData['assigned_to_user_id']) && $obj->assigned_to_user_id != $inputData['assigned_to_user_id']){
                     $this->createTimeline('task_assigned', $obj);
+
                     if($obj->lead_id)
                         $this->createLeadTimeline('task_assigned', $obj, $obj->application_id);
                 }
@@ -49,6 +55,9 @@ class TaskService{
         }   
         return response()->json(['message' => 'Error'], 500);
     }
+
+
+
 
     public function delete(Request $request){
         if(!$request->id)

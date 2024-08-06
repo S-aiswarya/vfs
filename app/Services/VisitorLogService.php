@@ -38,4 +38,16 @@ class VisitorLogService{
         return new CheckinResource($item);
     }
 
+     
+    public function VisitorlogUpdate($item, $request){
+
+            if($item->update($request))
+            {
+                return new CheckinResource($item);
+            }
+       
+        return response()->json(['message' => 'Error'], 500);
+}
+
+
 }

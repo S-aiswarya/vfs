@@ -77,6 +77,7 @@ class CheckinResource extends JsonResource
          'invoice_no' =>$this->invoice_no,
          'description_of_items' =>$this->description_of_items,
          'qty' =>$this->qty,
+         'received_by' =>$this->received_by,
          'seal_number' =>$this->seal_number,
          'total_number_of_passports' =>$this->total_number_of_passports,
          'sign_of_dispatcher' =>$this->sign_of_dispatcher,

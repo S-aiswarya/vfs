@@ -32,7 +32,7 @@
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Admin</a></li>
                                             <li class="breadcrumb-item"><a href="{{route('admin.leads.index')}}">Leads</a></li>
-                                            <li class="breadcrumb-item active">Import Leads</li>
+                                            <li class="breadcrumb-item active">Imports Leads</li>
                                         </ol>
                                     </div><!--end col-->
                                     <div class="col-auto align-self-center">

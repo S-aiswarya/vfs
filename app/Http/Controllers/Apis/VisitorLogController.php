@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Apis;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CheckInRequest;
+use App\Http\Requests\Auth\CheckinUpdateRequest;
 use App\Http\Resources\Apis\CheckinResource;
 use App\Http\Resources\Apis\CheckinResourceCollection;
 use App\Services\VisitorLogService;
@@ -35,11 +36,18 @@ class VisitorLogController extends Controller
 
     
    
-// public function Checkout_user(CheckInRequest $request){
-//     $request->validated();
 
-// }
-    
+      
+    public function VisitorlogUpdate(CheckinUpdateRequest $request, VisitorLogService $service){
+        $request->validated();
+        $item=CheckIn::find($request->id);
+        if(!$item)
+            return response()->json(['message' => 'Invalid Request'], 400);
+        else
+           return $service->update($item, $request);   
+    }
+
+       
 
 
     public function index(Request $request){
