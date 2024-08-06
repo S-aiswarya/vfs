@@ -39,7 +39,7 @@ class VisitorLogService{
     }
 
      
-    public function VisitorlogUpdate($item, $request){
+    public function Visitorlog($item, $request){
 
             if($item->update($request))
             {
@@ -47,7 +47,7 @@ class VisitorLogService{
             }
        
         return response()->json(['message' => 'Error'], 500);
-}
+     }
 
 
 }

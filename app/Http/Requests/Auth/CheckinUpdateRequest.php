@@ -21,9 +21,8 @@ class CheckinUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-         
-         'name' => 'required|max:250',
+        return [  
+           'name'=> 'required|max:250'
         ];
     }
 }
