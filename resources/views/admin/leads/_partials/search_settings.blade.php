@@ -36,13 +36,18 @@
                                 @if(isset($search_settings['stages']))
                                     <select name="leads.stage_id" class="form-control datatable-advanced-search webadmin-select2-input">
                                         <option value="">All</option>
+
                                         @foreach($search_settings['stages'] as $stage)
+
                                             <option value="{{$stage->id}}">{{$stage->name}}</option>
+
                                             @if($stage->sub_stages && count($stage->sub_stages))
+
                                                 @foreach($stage->sub_stages as $sub_stage)
                                                     <option value="{{$sub_stage->id}}">---{{$sub_stage->name}}</option>
                                                 @endforeach
                                             @endif
+
                                         @endforeach
                                     </select>
                                 @else

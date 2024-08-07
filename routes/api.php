@@ -54,6 +54,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::post('checkin', [VisitorLogController::class, 'Checkin'])->name('app.checkin');
     Route::post('checkout', [VisitorLogController::class, 'Checkout'])->name('app.checkout');
     Route::get('checkin', [VisitorLogController::class, 'index'])->name('app.checkin');
+    Route::get('checkin-view/{id}', [VisitorLogController::class, 'CheckinView'])->name('app.checkin-view');
     Route::post('user-verify',[UserAuthController::class, 'userVerify'])->name('app.user-verify');
     Route::post('sign_out',[UserAuthController::class, 'sign_out'])->name('app.sign_out');
     Route::post('visitorlog-update',[VisitorLogController::class, 'VisitorlogUpdate'])->name('app.visitorlog-update');

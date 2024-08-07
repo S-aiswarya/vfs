@@ -45,7 +45,7 @@
                         </div><!--end col-->
                     </div><!--end row-->
                     <!-- end page title end breadcrumb -->
-                    @include('admin._partials.search_settings', ['search_settings'=>$search_settings])
+                    @include('admin.check_ins.partials.search_settings')
                     <div class="row">
                         <div class="col-12">
                             <div class="card">

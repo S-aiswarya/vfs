@@ -116,7 +116,7 @@ class TaskController extends Controller
 
     public function view($id){
         $item = Task::where('id', $id);
-        $item = $this->checkAccess($item);
+       $item = $this->checkAccess($item);
         $item = $item->first();
 
         if(!$item)
