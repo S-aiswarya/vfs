@@ -121,8 +121,8 @@ class CheckInController extends Controller
         }
         // Material Inward Register
         elseif($request->check_ins_check_in_type_id == 7){
-            $table_heads = ['Date','Time', 'Name of Vendor/supplier','Delivery Receipt/ Invoice No./Date','Gate pass number (if applicable)','Description of Items','qty','Received by (Staff Name)',];
-            $collection = $this->model->select('DB::raw("date(entry_time)")','DB::raw("time(entry_time)")','name_of_vendor','invoice_no','gate_pass_number','description_of_items', 'qty' ,'received_by',);
+            $table_heads = ['Date','Time', 'Name of Vendor/supplier','Delivery Challan No.','Delivery Challan Date','Invoice No.','Invoice Date','Gate pass number (if applicable)','Description of Items','qty','Received by (Staff Name)',];
+            $collection = $this->model->select('DB::raw("date(entry_time)")','DB::raw("time(entry_time)")','name_of_vendor','delivery_challan_no','dated','invoice_no','Dated','gate_pass_number','description_of_items', 'qty' ,'received_by',);
         }
         //   Key Register
         elseif($request->check_ins_check_in_type_id == 8){
