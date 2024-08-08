@@ -18,7 +18,7 @@
                     <div class="col-md-3">
                             <div class="form-group">
                                 <label for="username">Date</label>
-                                <input type="text" class="form-control datatable-advanced-search date-range-picker" name="date_between-leads.created_at">
+                                <input type="text" class="form-control datatable-advanced-search date-range-picker" name="date_between-check_ins.created_at">
                             </div>
                              
                     </div>

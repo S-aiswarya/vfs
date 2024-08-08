@@ -46,6 +46,12 @@
                     </div><!--end row-->
                     <!-- end page title end breadcrumb -->
                     @include('admin.check_ins.partials.search_settings')
+                    <div class="row  float-right m-2">
+                        <button type="button" class="btn btn-success" id="export-to-excel">
+                            <i class="fas fa-download"></i> Export to Excel
+                        </button>
+                    </div>
+                    <div class="clearfix"></div>
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
@@ -56,6 +62,7 @@
                                         <tr>
                                             <th class="nodisplay"></th>
                                             <th class="table-width-10">ID</th>
+                                            <th class="table-width-10">Type</th>
                                             <th class="table-width-120">Name</th>
                                             <th class="table-width-120">Phonenumber</th>
                                             <th class="table-width-120">Token</th>
@@ -90,6 +97,7 @@
         var my_columns = [
             {data: 'updated_at', name: 'updated_at'},
             {data: null, name: 'id'},
+            {data: 'checkin_type', name:'register_types.register_name'},
             {data: 'name', name: 'name'},
             {data: 'phonenumber', name: 'phonenumber'},
             {data: 'token', name: 'token'},
@@ -112,12 +120,21 @@
                       required:false,
                       email:true,
                     },
+                   // "check_in_Type_id":"required",
                     "entry_time":"required",
                     "exit_time":"required",
                     
                   },
             });
         };
+
+        $(function(){
+            $(document).on('click', '#export-to-excel', function(){
+                var form_action = "{{route('admin.checkins.export')}}"
+                $('#searchForm').attr('action', form_action);
+                $('#searchForm').submit();
+            })
+        })
     </script>
     
     @parent

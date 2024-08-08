@@ -275,6 +275,7 @@ Route::group(['prefix' => $prefix, 'middleware' => ['web']], function () use($mi
      Route::post('/checkins/update', [CheckInController::class, 'update'])->name('admin.checkins.update');
      Route::get('/checkins/change-status/{id}', [CheckInController::class, 'changeStatus'])->name('admin.checkins.change-status');
      Route::post('/checkins/store', [CheckInController::class, 'store'])->name('admin.checkins.store');
+     Route::get('checkins/export',[CheckInController::class,'export'])->name('admin.checkins.export');
      
 
      //guards

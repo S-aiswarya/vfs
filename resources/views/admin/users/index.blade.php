@@ -91,7 +91,7 @@
         var my_columns = [
             {data: 'updated_at', name: 'updated_at'},
             {data: null, name: 'id'},
-            {data: 'role_name', name: 'roles.name'},
+            {data: 'user_name', name: 'users.name'},
             {data: 'name', name: 'name'},
             {data: 'email', name: 'email'},
             {data: 'phone_number', name: 'phone_number'},
