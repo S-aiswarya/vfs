@@ -76,7 +76,7 @@ class CheckinResource extends JsonResource
          'recipient_signature' =>$this->recipient_signature,
          'name_of_vendor' =>$this->name_of_vendor,
          'delivery_challan_no' =>$this->delivery_challan_no,
-         'delivery_challan_date	' =>$this->delivery_challan_date,
+         'delivery_challan_date' =>$this->delivery_challan_date,
          'invoice_date' =>$this->invoice_date,
          'invoice_no' =>$this->invoice_no,
          'description_of_items' =>$this->description_of_items,
