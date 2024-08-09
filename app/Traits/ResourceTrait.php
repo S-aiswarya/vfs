@@ -283,7 +283,7 @@ trait ResourceTrait {
                             $from_date = $this->formatDate($date_array[0]);
                             $from_date = date('Y-m-d H:i:s', strtotime($from_date.' 00:00:00'));
                             $to_date = $this->formatDate($date_array[1]);
-                            $to_date = date('Y-m-d H:i:s', strtotime($to_date.' 00:00:00'));
+                            $to_date = date('Y-m-d H:i:s', strtotime($to_date.' 23:55:55'));
                             $collection->whereBetween($key, [$from_date, $to_date]);
                     }
                     elseif($condition == 'like')

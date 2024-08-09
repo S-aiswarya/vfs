@@ -71,7 +71,7 @@ class CheckinResource extends JsonResource
          'position' =>$this->position,
          'employee_number' =>$this->employee_number,
          'date_of_issue' =>$this->date_of_issue,
-         'date_of_return' =>$this->redate_of_return,
+         'date_of_return' =>$this->date_of_return,
          'recipient_signature' =>$this->recipient_signature,
          'name_of_vendor' =>$this->name_of_vendor,
          'delivery_challan_no' =>$this->delivery_challan_no,

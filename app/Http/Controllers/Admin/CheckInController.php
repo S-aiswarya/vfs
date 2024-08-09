@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\CheckinExport;
+use DB;
 use App\Http\Controllers\Admin\BaseController as Controller;
 use App\Http\Requests\Admin\CheckInRequest;
 use App\Models\Check_In_Type;
@@ -13,6 +15,7 @@ use App\Models\Location;
 use App\Models\Center;
 use App\Models\Gate;
 use App\Helpers\BladeHelper;
+use App\Models\Register_type;
 use Illuminate\Http\Request;
 use View;
 
@@ -99,127 +102,113 @@ class CheckInController extends Controller
 
 
     public function export(Request $request){
-        // Courier Inward Register
-        if($request->check_ins_check_in_type_id == 1){
-            $table_heads = ['Date', 'From(Location)', 'Consignor','Courier Agency Name', 'AWB No.', 'Date Sent','Zip Lock No.(As applicable)','Time of receipt','Shipment handed over to(Name)','Check in Time','Check out Time'];
-            $collection = $this->model->select('DB::raw("date(entry_time)")','location','consignor','courier_agency', 'awb_no', 'dated', 'zip_lock_no', 'time_of_receipt','shipment_handed_over_to', 'DB::raw("time(entry_time)")")','DB::raw("time(exit_time)")' );
-        }
-        // Courier Outward
-        elseif($request->check_ins_check_in_type_id == 4 or  1){
-            $table_heads = ['Date', 'To(Location)', 'Consignor','Courier Agency Name', 'AWB No.', 'Date Sent','Zip Lock No.(As applicable)','Time of dispatch','Shipment handed over to(Name)','Check in Time','Check out Time'];
-            $collection = $this->model->select('DB::raw("date(entry_time)")','location','consignor','courier_agency', 'awb_no', 'dated', 'zip_lock_no', 'time_of_receipt','shipment_handed_over_to','DB::raw("time(entry_time)")','DB::raw("time(exit_time)")');
+
+        if($request->check_ins_check_in_type_id == 1 || $request->check_ins_check_in_type_id == 4){
+            $table_heads = ['Date', 'To(Location)','Consignor','Courier Agency Name', 'AWB No.', 'Date Sent','Zip Lock No.(As applicable)','Time of dispatch','Shipment handed over to(Name)','Check in Time','Check out Time'];
+            $collection = $this->model->select(\DB::raw("date(entry_time)"),'location','consignor','courier_agency', 'awb_no', 'dated', 'zip_lock_no', 'time_of_receipt','shipment_handed_over_to',\DB::raw("time(entry_time)"),\DB::raw("time(exit_time)"))->where('check_in_type_id',$request->check_ins_check_in_type_id);
         }
         // Guard Logbook-Event Register
         elseif($request->check_ins_check_in_type_id == 5){
-            $table_heads = ['Date','Time', 'Incident Brief', 'Name of Staff/Guard','informed to (Satff Name and Date of information)','Mode of informartion','Check in Time','Check out Time'];
-            $collection = $this->model->select('DB::raw("date(entry_time)")','DB::raw("time(entry_time)")','incident','name_of_staff', 'informed_to','mode','DB::raw("time(entry_time)")','DB::raw("time(exit_time)")');
+            $table_heads = ['Date','Time','Incident Brief','Name of Staff/Guard','informed to (Satff Name and Date of information)','Mode of informartion','Check in Time','Check out Time'];
+            $collection = $this->model->select(\DB::raw("date(entry_time) as date"),\DB::raw("time(entry_time) as time"),'incident','name_of_staff','informed_to','mode',\DB::raw("time(entry_time) as check_in_time"),\DB::raw("time(exit_time) as checkout_time"))->where('check_in_type_id', 5);
         }
         // Material Outward Register
         elseif($request->check_ins_check_in_type_id == 6){
-            $table_heads = ['Date','Time', 'Description of item (make, serial number)', 'Qty', 'Consignee (Full Name)','Gate pass number (if applicable)','Authorized by(If applicable as per the gate pass)','If returnable, expected date of return','Full Name and business address of recipient', 'Delivery Challan No.','Delivery Challan Date','Invoice No.','Invoice Date','Received_by','Check in Time','Check out Time'];
-            $collection = $this->model->select('DB::raw("date(entry_time)")','DB::raw("time(entry_time)")','description_of_items','qty','consignee','gate_pass_number','authorized', 'If_returnable_expected_date_of_return' ,'full_name_and_address_of_recipient','delivery_challan_no','dated','invoice_no','Dated','received_by', 'DB::raw("time(entry_time)")','DB::raw("time(exit_time)")');///
+            $table_heads = ['Date','Time','Description of item (make, serial number)', 'Qty', 'Consignee (Full Name)','Gate pass number (if applicable)','Authorized by(If applicable as per the gate pass)','If returnable, expected date of return','Full Name and business address of recipient', 'Delivery Challan No.','Delivery Challan Date','Invoice No.','Invoice Date','Received_by','Check in Time','Check out Time'];
+            $collection = $this->model->select(\DB::raw("date(entry_time)as date"),\DB::raw("time(entry_time)as time"),'description_of_items','qty','consignee','gate_pass_number','authorized', 'If_returnable_expected_date_of_return' ,'full_name_and_address_of_recipient','delivery_challan_no','dated','invoice_no','Dated','received_by',\DB::raw("time(entry_time)as check_in_time"),\DB::raw("time(exit_time)as checkout_time"))->where('check_in_type_id', 6);
         }
         // Material Inward Register
         elseif($request->check_ins_check_in_type_id == 7){
-            $table_heads = ['Date','Time', 'Name of Vendor/supplier','Delivery Challan No.','Delivery Challan Date','Invoice No.','Invoice Date','Gate pass number (if applicable)','Description of Items','qty','Received by (Staff Name)',];
-            $collection = $this->model->select('DB::raw("date(entry_time)")','DB::raw("time(entry_time)")','name_of_vendor','delivery_challan_no','dated','invoice_no','Dated','gate_pass_number','description_of_items', 'qty' ,'received_by',);
+            $table_heads = ['Date','Time','Name of Vendor/supplier','Delivery Challan No.','Delivery Challan Date','Invoice No.','Invoice Date','Gate pass number (if applicable)','Description of Items','qty','Received by (Staff Name)','Check in Time','Check out Time'];
+            $collection = $this->model->select(\DB::raw("date(entry_time) as date"),\DB::raw("time(entry_time) as time"),'name_of_vendor','delivery_challan_no','delivery_challan_date','invoice_no','invoice_Date','gate_pass_number','description_of_items', 'qty' ,'received_by',\DB::raw("time(entry_time) as check_in_time"),\DB::raw("time(exit_time)as checkout_time"))->where('check_in_type_id', 7);
         }
         //   Key Register
         elseif($request->check_ins_check_in_type_id == 8){
-            $table_heads = ['Date', 'Key','Number/Make','Issued to (Name)','Position','Date of Issue','Date of return','Signature of recipient','Check in Time','Check out Time'];
-            $collection = $this->model->select('DB::raw("date(entry_time)")','register_key','register_number','register_issued','position', 'date_of_issue' ,'date_of_return','recipient_signature','entry_time','exit_time');
+            $table_heads = ['Date','Key','Number/Make','Number Held','Issued to (Name)','Position','Employee Number','Date of Issue','Date of return','Check in Time','Check out Time'];
+            $collection = $this->model->select(\DB::raw("date(entry_time) as date"),'register_key','register_number','register_number_held','register_issued','position','employee_number','date_of_issue','date_of_return',\DB::raw("time(entry_time) as check_in_time"),\DB::raw("time(exit_time) as checkout_time"))->where('check_in_type_id', 8);
         }
          //  Key Register Format-Passport & Cash Safes
          elseif($request->check_ins_check_in_type_id == 9){
-            $table_heads = ['Date','Key 1 Staff Name','Key 2 Staff Name','Safe Opening Time','Safe Closing Time','Key 1 Staff Signature','Key 2 Staff Signature','Remarks','Check in Time','Check out Time'];
-            $collection = $this->model->select('DB::raw("date(entry_time)")','key_one_staff_name','key_two_staff_name','safe_opening_time','safe_closing_time','key_one_staff_signature', 'key_two_staff_signature' ,'remarks','entry_time','exit_time');
+            $table_heads = ['Date','Key 1 Staff Name','Key 2 Staff Name','Safe Opening Time','Safe Closing Time','Remarks','Check in Time','Check out Time'];
+            $collection = $this->model->select(\DB::raw("date(entry_time) as date"),'key_one_staff_name','key_two_staff_name','safe_opening_time','safe_closing_time','remarks',\DB::raw("time(entry_time) as check_in_time"),\DB::raw("time(exit_time) as checkout_time"))->where('check_in_type_id', 9);
         }
       //  Key Register Format-Key box
       elseif($request->check_ins_check_in_type_id == 10){
-        $table_heads = ['Date','Key Box Key No.','Key Box Opening Time','Key Box Closing Time','Staff Name','Staff Signature','Purpose','DM Signature','Check in Time','Check out Time'];
-        $collection = $this->model->select('DB::raw("date(entry_time)")','key_box','key_box_opening_time','key_box_closing_time','name_of_staff','staff_signature', 'purpose' ,'dm_signature','entry_time','exit_time');
+        $table_heads = ['Date','Key Box ,Key No.','Key Box Opening Time','Key Box Closing Time','Staff Name','Purpose','DM Signature','Check in Time','Check out Time'];
+        $collection = $this->model->select(\DB::raw("date(entry_time) as date"),'key_box','key_number','key_box_opening_time','key_box_closing_time','name_of_staff','purpose','dm_signature',\DB::raw("time(entry_time) as check_in_time"),\DB::raw("time(exit_time) as checkout_time"))->where('check_in_type_id', 10);
     }
       //VAC Opening Closing Register
       elseif($request->check_ins_check_in_type_id == 11){ 
-        $table_heads = ['Date','Time In','Staff No. 1 Name & Signature','Staff No. 2 Name & Signature','Time Out','Staff No. 1 Name & Signature','Staff No. 2 Name & Signature','Remarks','Check in Time','Check out Time'];
-        $collection = $this->model->select('DB::raw("date(entry_time)")','DB::raw("time(entry_time)")','staff_one_name_signature','staff_two_name_signature','DB::raw("time(exit_time)")','staff_one_name_signature', 'staff_two_name_signature','remarks','entry_time','exit_time');
+        $table_heads = ['Date','Name_of_Guard','Checklist','Remarks','Check in Time','Check out Time'];
+        $collection = $this->model->select(\DB::raw("date(entry_time) as date"),'guard','checklist','remarks',\DB::raw("time(entry_time) as check_in_time"),\DB::raw("time(exit_time) as checkout_time"))->where('check_in_type_id', 11);
     }
    //VAC CCTV Monitoring Log Sheet
      elseif($request->check_ins_check_in_type_id == 12){
        $table_heads = ['Date','Time','Details of Incident / Inappropriate behaviour observed','Location in the VAC','Reported to','Action Taken','Remarks (For closure)','Check in Time','Check out Time'];
-       $collection = $this->model->select('DB::raw("date(entry_time)")','DB::raw("time(entry_time)")','inappropriate_behaviour_observed','location_in_the_vac','reported_to','action_taken', 'remarks(for closure)','entry_time','exit_time');
+       $collection = $this->model->select(\DB::raw("date(entry_time) as date"),\DB::raw("time(entry_time) as time"),'inappropriate_behaviour_observed','location_in_the_vac','reported_to','action_taken','remarks',\DB::raw("time(entry_time) as check_in_time"),\DB::raw("time(exit_time) as checkout_time"))->where('check_in_type_id', 12);
       }
          //Visitors Entry Exit Register
      elseif($request->check_ins_check_in_type_id == 13){
-        $table_heads = ['Date','Name of the Visitor','Business address of visitor','National ID Type Checked(Passport,DL,etc.)*','Whom to Visit','Purpose of visit','Visitor Pass No.','Time In','Signature of visitor','Time out','Signature of security guard','Check in Time','Check out Time'];
-        $collection = $this->model->select('DB::raw("date(entry_time)")','name_of_the_visitor','business_address_of_visitor','national_id_type','whom_to_visit','purpose_of_visit','visitor_pass_no','DB::raw("time(entry_time)")','signature_of_visitor','DB::raw("time(exit_time)")','signature_of_security_guard','entry_time','exit_time');
+        $table_heads = ['Date','Name of the Visitor','Business address of visitor','National ID Type Checked(Passport,DL,etc.)*','Whom to Visit','Purpose of visit','Visitor Pass No.','Check in Time','Check out Time'];
+        $collection = $this->model->select(\DB::raw("date(entry_time) as date"),'name_of_the_visitor','business_address_of_visitor','national_id_type','whom_to_visit','purpose_of_visit','visitor_pass_no',\DB::raw("time(entry_time) as check_in_time"),\DB::raw("time(exit_time) as checkout_time"))->where('check_in_type_id', 13);
         
        }
             //Security Training Log for Staff
       elseif($request->check_ins_check_in_type_id == 14){
         $table_heads = ['Date','Employee Code','Name','Department / VAC','Facilitator','Medium of Training','Location','Check in Time','Check out Time'];
-        $collection = $this->model->select('DB::raw("date(entry_time)")','employ_code','secuirity_training_log_name','department','facilitator','medium_of_training','location','entry_time','exit_time');
+        $collection = $this->model->select(\DB::raw("date(entry_time) as date"),'employ_code','secuirity_training_log_name','department','facilitator','medium_of_training','location',\DB::raw("time(entry_time)  as check_in_time"),\DB::raw("time(exit_time) as checkout_time"))->where('check_in_type_id', 14);
         
        }
 
         //Security Training Log for Guards
       elseif($request->check_ins_check_in_type_id == 15){
         $table_heads = ['Date','ID No. / Code','Guarding Agency Name /VFS Guard (in-house)','Employee Code','Name','Department / VAC','Facilitator','Medium of Training','Location','Check in Time','Check out Time'];
-        $collection = $this->model->select('DB::raw("date(entry_time)")','id_code','agency_name','employ_code','secuirity_training_log_name','department','facilitator','medium_of_training','location','entry_time','exit_time');
+        $collection = $this->model->select(\DB::raw("date(entry_time) as date"),'id_code','agency_name','employ_code','secuirity_training_log_name','department','facilitator','medium_of_training','location',\DB::raw("time(entry_time)  as check_in_time"),\DB::raw("time(exit_time) as checkout_time"))->where('check_in_type_id', 15);
         
        }
 
        //Seal Control Log
        elseif($request->check_ins_check_in_type_id == 16){
         $table_heads = ['Date','Time','Seal Number / Ziplock number','Total Number of Passports / Documents','Name and Sign of Dispatcher','Checked by Manager / Supervisor (Name and Sign)','Check in Time','Check out Time'];
-        $collection = $this->model->select('DB::raw("date(entry_time)")','DB::raw("time(entry_time)")','seal_number','total_number_of_passports','sign_of_dispatcher','checked_by_manager','entry_time','exit_time');
+        $collection = $this->model->select(\DB::raw("date(entry_time) as date"),\DB::raw("time(entry_time)  as time"),'seal_number','total_number_of_passports','sign_of_dispatcher','checked_by_manager',\DB::raw("time(entry_time) as check_in_time"),\DB::raw("time(exit_time) as checkout_time"))->where('check_in_type_id', 16);
        }
 
-       //Fire / Evacuation Drill
-         elseif($request->check_ins_check_in_type_id == 17){
-        $table_heads = ['Date','Type','Weight','Location','Refilling Date','Expiry Date','Inspection Date','Next Due Date','Signature','Check in Time','Check out Time'];
-        $collection = $this->model->select('DB::raw("date(entry_time)")','type','weight','location','refillig_date','expiry_date','inspection_date','next_due_date','signature','entry_time','exit_time');
+       //Fire  Evacuation Drill
+        elseif($request->check_ins_check_in_type_id == 17){
+        $table_heads = ['Date','Type','Weight','Location','Refilling Date','Expiry Date','Inspection Date','Next Due Date','Check in Time','Check out Time'];
+        $collection = $this->model->select(\DB::raw("date(entry_time) as date"),'type','weight','location','refillig_date','expiry_date','inspection_date','next_due_date',\DB::raw("time(entry_time) as check_in_time"),\DB::raw("time(exit_time) as checkout_time"))->where('check_in_type_id', 17);
        }
        //Fire Extinguisher Inspection Record Log
        elseif($request->check_ins_check_in_type_id == 18){
         $table_heads = ['Date','Type','Weight','Location','Refilling Date','Expiry Date','Inspection Date','Next Due Date','Check in Time','Check out Time'];
-        $collection = $this->model->select('DB::raw("date(entry_time)")','type','weight','location','refillig_date','expiry_date','inspection_date','next_due_date','entry_time','exit_time');
+        $collection = $this->model->select(\DB::raw("date(entry_time) as date"),'type','weight','location','refillig_date','expiry_date','inspection_date','next_due_date',\DB::raw("time(entry_time) as check_in_time"),\DB::raw("time(exit_time) as checkout_time"))->where('check_in_type_id', 18);
        }
        //Mobile Phone Deposit
        elseif($request->check_ins_check_in_type_id == 19){
         $table_heads = ['Date','Name of Staff','Mobile Phone Unit & Model','Time Deposited','Check in Time','Check out Time'];
-        $collection = $this->model->select('DB::raw("date(entry_time)")','name_of_staff','mobile_phone_unit_model','time_deposited','entry_time','exit_time');
+        $collection = $this->model->select(\DB::raw("date(entry_time) as date"),'name_of_staff','mobile_phone_unit_model','time_deposited',\DB::raw("time(entry_time) as check_in_time"),\DB::raw("time(exit_time)  as checkout_time"))->where('check_in_type_id', 19);
        }
 
-       
-        if(request()->get('data'))
-        {
-            $collection = $this->applyFiltering($collection);
+        if(!empty($request->date_between)){
+            $date_array = explode('-', $request->date_between);
+            $from_date = $this->formatDate($date_array[0]);
+            $from_date = date('Y-m-d H:i:s', strtotime($from_date.' 00:00:00'));
+            $to_date = $this->formatDate($date_array[1]);
+            $to_date = date('Y-m-d H:i:s', strtotime($to_date.' 00:00:00'));
+            $collection->whereBetween('created_at', [$from_date, $to_date]);
         }
-        else
-            $collection->where('status', 'Open');
-        $leads = $collection->take(1000)->get();
 
-        foreach($leads as $lead){
-            if(!empty($lead->extra_data)){
-                $extra_data = json_decode($lead->extra_data, true);
-                foreach($extra_data as $key=>$eData){
-                    $lead->$key = $eData;
-                }
-                unset($lead->extra_data);
-            }
-            else{
-                unset($lead->extra_data);
-            }
-            $lead->created_at = date('d-m-Y H:i:s', strtotime($lead->created_at));
-        }
-        $table_heads[] = 'UTM Source';
-        $table_heads[] = 'Source Url';
-        $table_heads[] = 'Status';
-        $table_heads[] = 'Created On';
-
-        $excel_name = 'lead_export_'.round(microtime(true) * 1000).'.xlsx';
-        return (new LeadExport($leads, $table_heads))->download($excel_name);
+        $visitor_logs = $collection->take(1000)->get();
+           // print_r($visitor_logs);exit;
+         // checkin_types obj formate  convert for excel sheet
+         $register_types=Register_type::find($request->check_ins_check_in_type_id);
+        // print_r($register_types);exit;
+         $string_replace=str_replace(" ","_",$register_types->register_name);
+         $checkin_types=strtolower($string_replace);
+        //  return $checkin_types;exit;
+         $excel_name = 'visitor_log_export_'.$checkin_types.round(microtime(true) * 1000).'.xlsx';
+      
+        return (new CheckinExport($visitor_logs, $table_heads))->download($excel_name);
     }
 
 }
