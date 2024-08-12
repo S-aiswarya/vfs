@@ -91,14 +91,12 @@
         var my_columns = [
             {data: 'updated_at', name: 'updated_at'},
             {data: null, name: 'id'},
-            {data: 'user_name', name: 'users.name'},
+            {data: 'role_name', name: 'roles.name'},
             {data: 'name', name: 'name'},
             {data: 'email', name: 'email'},
             {data: 'phone_number', name: 'phone_number'},
             {data: 'office_country', name: 'office_countries.name'},
-            // {data: 'offices', name: 'offices'},
             {data: 'status', name: 'status'},
-           // {data: 'action_targets', name: 'action_targets'},
             {data: 'action_ajax_edit', name: 'action_ajax_edit'},
             {data: 'action_delete', name: 'action_delete'}
         ];

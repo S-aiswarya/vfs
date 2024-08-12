@@ -99,7 +99,10 @@ class VisitorLogController extends Controller
             $items = $items->where('gate_id', $data['gate_id']);
         }
 
+         $checkout_notes = CheckIn::whereNull('exit_time' ,1);
+         if($checkout_notes){
 
+         }
         $order_field = 'updated_at';
         $order_dir = 'DESC';
         if(isset($data['sort_field']) && trim($data['sort_field']) != "")
@@ -111,4 +114,5 @@ class VisitorLogController extends Controller
         $items = $items->orderBy($order_field, $order_dir)->paginate($limit);
         return new CheckinResourceCollection($items);
 }
+
 }

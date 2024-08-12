@@ -54,7 +54,7 @@ class UserController extends Controller
     }
     
     protected function getCollection() {
-        return $this->model->select('users.*', 'roles.name as role_name', 'office_countries.name as office_country')
+        return $this->model->select('users.*','roles.name as role_name', 'office_countries.name as office_country')
                     ->join('roles', 'users.role_id', '=', 'roles.id')
                     ->leftJoin('office_countries', 'users.office_country_id', '=', 'office_countries.id')
                     ->where('users.user_type', 'user');
@@ -63,71 +63,7 @@ class UserController extends Controller
     protected function setDTData($collection) {
         $route = $this->route;
         return $this->initDTData($collection)
-            ->addColumn('action_targets', function($obj) use ($route) {
-                if(($obj->role_id == 5 || $obj->role_id == 4) && auth()->user()->can($this->permissions['edit']))
-                    return '<a href="'.route($route.'.targets', [$obj->id]).'" class="text-warning webadmin-open-ajax-popup" title="Targets of '.$obj->name.'" ><i class="fas fa-cog"></i></a>';
-                else
-                    return '';
-            })
-            ->addColumn('offices', function($obj){
-                $offices = [];
-                if($obj->role_id == 6){
-                    $offices = Office::where('application_coordinator_id', $obj->id)->pluck('name')->toArray();
-                }
-                else{
-                    $offices = DB::table('office_user')->join('offices', 'office_user.office_id', '=', 'offices.id')->where('office_user.user_id', $obj->id)->pluck('offices.name')->toArray();
-                }
-
-                if(count($offices)){
-                    $output_offices = array_map(function($office){
-                            return '<span class="badge bg-light">'.$office.'</span>';
-                        }, $offices);
-
-                    return implode('<br/>', $output_offices);
-                }
-                else
-                        return '';
-            })
-            ->editColumn('status', function($obj) use($route) {
-                if($obj->status == 1)
-                {
-                    if(auth()->user()->can($this->permissions['edit'])){
-                        if($obj->role_id == 5 || $obj->role_id == 6)
-                            return '<a href="'.route($route.'.modify-status', [encrypt($obj->id)]).'" class="text-warning webadmin-open-ajax-popup" title="Disable '.$obj->name.'" ><i class="h5 text-success fa fa-check-circle"></i></a>';
-                        else
-                            return '<a href="' . route($route.'.change-status', [encrypt($obj->id)]).'" class="webadmin-btn-warning-popup" data-message="Are you sure, want to disable this record?"><i class="h5 text-success fa fa-check-circle"></i></a>'; 
-                    }
-                    else
-                        return '<i class="h5 text-success fa fa-check-circle"></i>';
-                }
-                else{
-                    if(auth()->user()->can($this->permissions['edit']))
-                        return '<a href="' . route($route.'.change-status', [encrypt($obj->id)]) . '" class="webadmin-btn-warning-popup" data-message="Are you sure, want to enable this record?"><i class="h5 text-danger fa fa-times-circle"></i></a>';
-                    else
-                        return '<i class="h5 text-danger fa fa-times-circle"></i>';
-                }
-            })
-            ->editColumn('name', function($obj) use($route) {
-                if($obj->role_id == 4){
-                    if($obj->has_permission_to_access_unallocated_leads == 1)
-                    {
-                        if(auth()->user()->can($this->permissions['edit'])){
-                            return $obj->name. '&nbsp;&nbsp;<a href="' . route($route.'.access-unallocated-leads', [encrypt($obj->id)]).'" class="webadmin-btn-warning-popup" title="Have access to unassigned leads" data-message="Are you sure, want to disable this option?"><i class="h5 text-success fa fa-check-circle"></i></a>'; 
-                        }
-                        else
-                            return $obj->name. '&nbsp;&nbsp;<i class="h5 text-success fa fa-check-circle" title="Has access to unassigned leads"></i>';
-                    }
-                    else{
-                        if(auth()->user()->can($this->permissions['edit']))
-                            return $obj->name. '&nbsp;&nbsp;<a href="' . route($route.'.access-unallocated-leads', [encrypt($obj->id)]) . '" class="webadmin-btn-warning-popup" title="Do not have access to unassigned leads" data-message="Are you sure, want to enable this option?"><i class="h5 text-secondary fa fa-times-circle"></i></a>';
-                        else
-                            return $obj->name. '&nbsp;&nbsp;<i class="h5 text-secondary fa fa-times-circle"></i>';
-                    }
-                }
-                else
-                    return $obj->name;
-            })
-            ->rawColumns(['action_ajax_edit', 'action_delete', 'status', 'action_targets', 'offices', 'name']);
+            ->rawColumns(['action_ajax_edit', 'action_delete', 'status']);
     }
 
     protected function getSearchSettings(){}
