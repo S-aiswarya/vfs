@@ -76,7 +76,7 @@ class VisitorLogController extends Controller
         }
 
         if(!empty($data['email'])){
-            $items = $items->where('email', $data['email']);
+            $items = $items->where('email','LIKE', '%' .$data['email'].'%');
         }
 
         if(!empty($data['phonenumber'])){
@@ -84,7 +84,7 @@ class VisitorLogController extends Controller
         }
 
         if(!empty($data['token'])){
-            $items = $items->where('token', $data['token']);
+            $items = $items->where('token','LIKE', '%' .$data['token'].'%');
         }
          
         if(!empty($data['location_id'])){
