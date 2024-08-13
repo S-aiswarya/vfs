@@ -44,16 +44,17 @@
                             </div><!--end page-title-box-->
                         </div><!--end col-->
                         
-                        <div class="row  float-right m-2">
-                        <button type="button" class="btn btn-success" id="export-to-excel">
-                            <i class="fas fa-download"></i> Export to Excel
-                        </button>
-                    </div>
+                      
 
                     </div><!--end row-->
                     <!-- end page title end breadcrumb -->
                     
                     @include('admin.check_ins.partials.search_settings')
+                    <div class="row  float-right m-2">
+                        <button type="button" class="btn btn-success" id="export-to-excel">
+                            <i class="fas fa-download"></i> Export to Excel
+                        </button>
+                    </div>
                   
                     <div class="clearfix"></div>
                     <div class="row">
