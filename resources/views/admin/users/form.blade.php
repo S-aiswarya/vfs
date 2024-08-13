@@ -59,7 +59,7 @@
 
   <!-- Gate -->
   <div class="form-group">
-      <label for="gate">Gate</label>
+      <label for="gate">Gate/Floors</label>
       <select name="gate_id"  style="width: 100% !important;" class="w-100 webadmin-select2-input form-control" data-parent=".confirm-wrap" data-select2-url="{{route('admin.select2.gates')}}">
         @if($obj->gate)
           <option value="{{$obj->gate->id}}" selected="selected">{{$obj->gate->name}}</option>
