@@ -36,7 +36,7 @@
                                     </div><!--end col-->
                                     @if(auth()->user()->can($permissions['create']))
                                      <div class="col-auto align-self-center">
-                                        <a class=" btn btn-sm btn-primary webadmin-open-ajax-popup" title="Create Gate" href="{{route($route.'.create')}}" role="button"><i class="fas fa-plus mr-2"></i>Create New</a>
+                                        <a class=" btn btn-sm btn-primary webadmin-open-ajax-popup" title="Create Gate/Floors" href="{{route($route.'.create')}}" role="button"><i class="fas fa-plus mr-2"></i>Create New</a>
                                     </div>
                                     @endif
                                 </div><!--end row-->                                                              
