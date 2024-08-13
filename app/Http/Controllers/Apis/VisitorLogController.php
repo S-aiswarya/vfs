@@ -99,10 +99,15 @@ class VisitorLogController extends Controller
             $items = $items->where('gate_id', $data['gate_id']);
         }
 
-         $checkout_notes = CheckIn::whereNull('exit_time' ,1);
-         if($checkout_notes){
 
-         }
+        
+        if(!empty($data['exit_time'])){
+            $items = $items->wherenull('exit_time');
+        }
+
+           
+
+
         $order_field = 'updated_at';
         $order_dir = 'DESC';
         if(isset($data['sort_field']) && trim($data['sort_field']) != "")

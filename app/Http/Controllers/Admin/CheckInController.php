@@ -199,16 +199,15 @@ class CheckInController extends Controller
         }
 
         $visitor_logs = $collection->take(1000)->get();
-           // print_r($visitor_logs);exit;
          // checkin_types obj formate  convert for excel sheet
          $register_types=Register_type::find($request->check_ins_check_in_type_id);
-        // print_r($register_types);exit;
-         $string_replace=str_replace(" ","_",$register_types->register_name);
+      
+         $string_replace=preg_replace('/[^a-zA-z]/', '', $register_types->register_name);
          $checkin_types=strtolower($string_replace);
         //  return $checkin_types;exit;
          $excel_name = 'visitor_log_export_'.$checkin_types.round(microtime(true) * 1000).'.xlsx';
       
-        return (new CheckinExport($visitor_logs, $table_heads))->download($excel_name);
+        return (new CheckinExport($visitor_logs,$table_heads))->download($excel_name);
     }
 
 }
