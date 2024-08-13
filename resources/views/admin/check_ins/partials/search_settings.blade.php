@@ -8,7 +8,7 @@
                     <div class="col-md-3">
                             <div class="form-group">
                                 <label for="">Register Type</label>
-                                    <select name="check_ins.check_in_type_id" class="form-control datatable-advanced-search webadmin-select2-input" data-select2-url="{{route('admin.select2.register_types')}}">
+                                    <select id="checkin-register-type-id" name="check_ins.check_in_type_id" class="form-control datatable-advanced-search webadmin-select2-input" data-select2-url="{{route('admin.select2.register_types')}}">
                                    </select>
                             </div>
                         </div>

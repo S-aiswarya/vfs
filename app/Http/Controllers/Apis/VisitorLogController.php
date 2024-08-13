@@ -80,7 +80,7 @@ class VisitorLogController extends Controller
         }
 
         if(!empty($data['phonenumber'])){
-            $items = $items->where('phonenumber', $data['phonenumber']);
+            $items = $items->where('phonenumber','LIKE', '%'.$data['phonenumber'].'%');
         }
 
         if(!empty($data['token'])){

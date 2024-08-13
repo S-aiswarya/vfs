@@ -37,6 +37,7 @@
                                     </div><!--end col-->
                                     @if(auth()->user()->can($permissions['create']))
                                      <div class="col-auto align-self-center">
+                                        <a class="btn btn-success d-none" id="export-to-excel"><i class="fas fa-download"></i> Export to Excel</a>
                                         <a class=" btn btn-sm btn-primary webadmin-open-ajax-popup" title="CheckIns" href="{{route($route.'.create')}}" role="button"><i class="fas fa-plus mr-2"></i>Create New</a>
                                     </div>
                                     @endif
@@ -50,11 +51,6 @@
                     <!-- end page title end breadcrumb -->
                     
                     @include('admin.check_ins.partials.search_settings')
-                    <div class="row  float-right m-2">
-                        <button type="button" class="btn btn-success" id="export-to-excel">
-                            <i class="fas fa-download"></i> Export to Excel
-                        </button>
-                    </div>
                   
                     <div class="clearfix"></div>
                     <div class="row">
@@ -132,13 +128,15 @@
                   },
             });
         };
-
+ 
         $(function(){
+            $('#export-to-excel').addClass('d-none');
             $(document).on('click', '#export-to-excel', function(){
                 var form_action = "{{route('admin.checkins.export')}}"
                 $('#searchForm').attr('action', form_action);
                 $('#searchForm').submit();
             })
+           
         })
     </script>
     
