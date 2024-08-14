@@ -55,8 +55,8 @@
                                         <tr>
                                             <th class="nodisplay"></th>
                                             <th class="table-width-10">ID</th>
-                                            <th class="table-width-120">Centers</th>
-                                            <th class="table-width-120">Gates</th>
+                                            <th class="table-width-120">Center</th>
+                                            <th class="table-width-120">Gate</th>
                                             <th class="table-width-120">Last Updated On</th>
                                             <th class="nosort nosearch table-width-10">@if(auth()->user()->can($permissions['edit'])) Edit @else View @endif</th>
                                             <th class="nosort nosearch table-width-10">Delete</th>

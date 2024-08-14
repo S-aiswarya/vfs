@@ -55,8 +55,8 @@
                                         <tr>
                                             <th class="nodisplay"></th>
                                             <th class="table-width-10">ID</th>
-                                            <th class="table-width-120">Buildings</th>
-                                            <th class="table-width-120">Centers</th>
+                                            <th class="table-width-120">Building</th>
+                                            <th class="table-width-120">Center</th>
                                             <th class="table-width-120">Address</th>
                                             <th class="table-width-120">Token</th>
                                             <th class="table-width-120">Last Updated On</th>

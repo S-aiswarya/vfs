@@ -56,7 +56,7 @@
                                             <th class="nodisplay"></th>
                                             <th class="table-width-10">ID</th>
                                             <th class="table-width-120">City</th>
-                                            <th class="table-width-120">Name</th>
+                                            <th class="table-width-120">Location</th>
                                             <th class="table-width-120">Address</th>
                                             <th class="table-width-120">Last Updated On</th>
                                             <th class="nosort nosearch table-width-10">@if(auth()->user()->can($permissions['edit'])) Edit @else View @endif</th>

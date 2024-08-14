@@ -19,7 +19,7 @@
         </div>
 
       <div class="form-group">
-        <label for="name">Name</label>
+        <label for="name">Building Name</label>
         <input type="text" class="form-control" id="name" name="name" value="{{$obj->name}}">
       </div>
         
