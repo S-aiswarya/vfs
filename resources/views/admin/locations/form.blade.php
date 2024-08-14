@@ -10,7 +10,7 @@
     <div class="row">
 
     <div class="form-group">
-            <label for="city">City</label>
+            <label for="city">Cities</label>
             <select name="city_id" style="width: 100% !important;" class="w-100 webadmin-select2-input form-control" data-parent=".confirm-wrap" data-select2-url="{{route('admin.select2.cities')}}">
               @if($obj->city)
                 <option value="{{$obj->city->id}}" selected="selected">{{$obj->city->name}}</option>
