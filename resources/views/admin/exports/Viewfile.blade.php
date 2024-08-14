@@ -3,8 +3,8 @@
     <thead>
            
     <tr>
-    <th colspan=""></td>
-  </tr>
+        <th colspan="{{count($headings)}}" style="text-align: center; font-size: 16px; border: 1px solid black;">{{$excelheadings}}</th>
+    </tr>
         <tr>
       @foreach($headings as $heading)
         <th>{{$heading}}</th>

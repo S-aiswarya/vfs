@@ -142,8 +142,8 @@ class CheckInController extends Controller
     }
       //VAC Opening Closing Register
       elseif($request->check_ins_check_in_type_id == 11){ 
-        $table_heads = ['Date','Name_of_Guard','Checklist','Remarks','Check in Time','Check out Time'];
-        $collection = $this->model->select(\DB::raw("date(entry_time) as date"),'guard','checklist','remarks',\DB::raw("time(entry_time) as check_in_time"),\DB::raw("time(exit_time) as checkout_time"))->where('check_in_type_id', 11);
+        $table_heads = ['Date','Check in Time','Staff No. 1 Name ','Staff No. 2 Name','Check out Time','Staff No. 1 Name ','Staff No. 2 Name ','Name_of_Guard','Checklist','Remarks'];
+        $collection = $this->model->select(\DB::raw("date(entry_time) as date"),\DB::raw("time(entry_time) as check_in_time"),'staff_one_name_check_in','staff_two_name_check_in' ,\DB::raw("time(exit_time) as checkout_time"),'staff_one_name_check_out','staff_two_name_check_out','guard','checklist','remarks')->where('check_in_type_id', 11);
     }
    //VAC CCTV Monitoring Log Sheet
      elseif($request->check_ins_check_in_type_id == 12){
@@ -209,7 +209,8 @@ class CheckInController extends Controller
          $checkin_types=strtolower($string_replace);
         //  return $checkin_types;exit;
          $excel_name = 'visitor_log_export_'.$checkin_types.round(microtime(true) * 1000).'.xlsx';
-         return \Excel::download(new CheckinExport($visitor_logs,$table_heads), $excel_name);
+        $excelheadings = $register_types->register_name;
+         return \Excel::download(new CheckinExport($visitor_logs,$table_heads,$excelheadings), $excel_name);
       
         //return (new CheckinExport($visitor_logs,$table_heads))->download($excel_name);
     }
