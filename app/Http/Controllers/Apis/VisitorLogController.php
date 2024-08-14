@@ -99,6 +99,9 @@ class VisitorLogController extends Controller
             $items = $items->where('gate_id', $data['gate_id']);
         }
 
+        if(!empty($data['gate_id'])){
+            $items = $items->where('gate_id', $data['gate_id']);
+        }
 
         
         if(!empty($data['exit_time'])){
@@ -106,6 +109,12 @@ class VisitorLogController extends Controller
         }
 
            
+        if(isset($data['from']) && isset($data['to']))
+        {
+            $from = $data['from'];
+            $to = $data['to'];
+            $items = $items->whereBetween(\DB::raw('DATE(created_at)'), array($from, $to));
+        } 
 
 
         $order_field = 'updated_at';
