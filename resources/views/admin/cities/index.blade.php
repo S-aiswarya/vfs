@@ -55,8 +55,8 @@
                                         <tr>
                                             <th class="nodisplay"></th>
                                             <th class="table-width-10">ID</th>
-                                            <th class="table-width-120">Name</th>
-                                            <th class="table-width-120">Country</th>
+                                            <th class="table-width-120">Countries</th>
+                                            <th class="table-width-120">Cities</th>
                                             <th class="table-width-120">Last Updated On</th>
                                             <th class="nosort nosearch table-width-10">@if(auth()->user()->can($permissions['edit'])) Edit @else View @endif</th>
                                             <th class="nosort nosearch table-width-10">Delete</th>
@@ -86,8 +86,8 @@
         var my_columns = [
             {data: 'updated_at', name: 'updated_at'},
             {data: null, name: 'id'},
-            {data: 'name', name: 'name'},
             {data: 'country', name: 'office_countries.name'},
+            {data: 'name', name: 'name'},
             {data: 'date', name: 'updated_at'},
             {data: 'action_ajax_edit', name: 'action_ajax_edit'},
             {data: 'action_delete', name: 'action_delete'}

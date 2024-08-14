@@ -51,7 +51,7 @@
                                             <th class="table-width-10 text-center">ID</th>
                                             <th class="table-width-120">User</th>
                                             <th class="table-width-120">Action</th>
-                                            <th class="table-width-120">Action_time</th>
+                                            <th class="table-width-120">Action_Time</th>
                                             <th class="table-width-120">Ip Address</th>
                                            
                                         </tr>

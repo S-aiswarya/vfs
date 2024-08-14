@@ -39,7 +39,7 @@
                                      <div class="col-auto align-self-center">
                                         <a class="btn btn-success d-none" id="export-to-excel"><i class="fas fa-download"></i> Export to Excel</a>
                                         <!-- <a class=" btn btn-sm btn-primary webadmin-open-ajax-popup" title="CheckIns" href="{{route($route.'.create')}}" role="button"><i class="fas fa-plus mr-2"></i>Create New</a> -->
-                                    </div>
+                                     </div>
                                     @endif
                                 </div><!--end row-->                                                              
                             </div><!--end page-title-box-->
@@ -67,8 +67,8 @@
                                             <th class="table-width-120">Name</th>
                                             <th class="table-width-120">Phonenumber</th>
                                             <th class="table-width-120">Token</th>
-                                            <th class="table-width-120">Checkin time</th>
-                                            <th class="table-width-120">Checkout time</th>
+                                            <th class="table-width-120">Check-in time</th>
+                                            <th class="table-width-120">Check-out time</th>
                                             <th class="table-width-120">Last Updated On</th>
                                             <th class="nosort nosearch table-width-10">@if(auth()->user()->can($permissions['edit'])) Edit @else View @endif</th>
                                             <th class="nosort nosearch table-width-10">Delete</th>

@@ -10,7 +10,7 @@
     <div class="row">
 
     <div class="form-group">
-            <label for="center">Center</label>
+            <label for="center">Centers</label>
             <select name="center_id" style="width: 100% !important;" class="w-100 webadmin-select2-input form-control" data-parent=".confirm-wrap" data-select2-url="{{route('admin.select2.centers')}}">
               @if($obj->center)
                 <option value="{{$obj->center->id}}" selected="selected">{{$obj->center->name}}</option>
@@ -19,7 +19,7 @@
         </div>
 
       <div class="form-group">
-        <label for="name">Name</label>
+        <label for="name">Gate Name</label>
         <input type="text" class="form-control" id="name" name="name" value="{{$obj->name}}">
       </div>
         
