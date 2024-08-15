@@ -7,7 +7,7 @@
     </tr>
         <tr>
       @foreach($headings as $heading)
-        <th>{{$heading}}</th>
+        <th style="text-align: center; font-size: 10px;">{{$heading}}</th>
       @endforeach
       </tr>
 
