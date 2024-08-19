@@ -35,6 +35,10 @@
                                             <li class="breadcrumb-item active">All Check-Ins</li>
                                         </ol>
                                     </div><!--end col-->
+                                    <div class="col-auto align-self-center">
+                                    <a class=" btn btn-sm btn-primary " id="view-excel-file" href="{{route('admin.checkins.viewexport')}}">View File</a> 
+                                    </div>
+
                                     @if(auth()->user()->can($permissions['create']))
                                      <div class="col-auto align-self-center">
                                         <a class="btn btn-success d-none" id="export-to-excel"><i class="fas fa-download"></i> Export to Excel</a>
@@ -133,6 +137,15 @@
             $('#export-to-excel').addClass('d-none');
             $(document).on('click', '#export-to-excel', function(){
                 var form_action = "{{route('admin.checkins.export')}}"
+                $('#searchForm').attr('action', form_action);
+                $('#searchForm').submit();
+            })
+           
+        })
+        $(function(){
+           // $('#view-excel-file').addClass('d-none');
+            $(document).on('click', '#view-excel-file', function(){
+                var form_action = "{{route('admin.checkins.viewexport')}}"
                 $('#searchForm').attr('action', form_action);
                 $('#searchForm').submit();
             })

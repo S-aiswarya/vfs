@@ -67,6 +67,10 @@ class VisitorLogController extends Controller
         $limit = (isset($data['limit']) && trim($data['limit']) != '')?(int)$data['limit']:10;
         $items = new CheckIn();
 
+
+        if(!empty($data['id'])){
+            $items = $items->where('id', $data['id']);
+        }
        
         if(!empty($data['name']))
         {

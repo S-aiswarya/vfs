@@ -106,6 +106,13 @@ class CheckInController extends Controller
 
     public function export(Request $request){
 
+        list($visitor_logs, $table_heads, $excelheadings, $excel_name) = $this->processData($request);
+         return \Excel::download(new CheckinExport($visitor_logs,$table_heads,$excelheadings), $excel_name);
+      
+        //return (new CheckinExport($visitor_logs,$table_heads))->download($excel_name);
+    }
+
+    protected function processData(Request $request){
         if($request->check_ins_check_in_type_id == 1 || $request->check_ins_check_in_type_id == 4){
             $table_heads = ['Date', 'To(Location)','Consignor','Courier Agency Name', 'AWB No.', 'Date Sent','Zip Lock No.(As applicable)','Time of dispatch','Shipment handed over to(Name)','Description ','Check in Time','Check out Time'];
             $collection = $this->model->select(\DB::raw("date(entry_time)"),'location','consignor','courier_agency', 'awb_no', 'dated', 'zip_lock_no', 'time_of_receipt','shipment_handed_over_to','description_of_items',\DB::raw("time(entry_time)"),\DB::raw("time(exit_time)"))->where('check_in_type_id',$request->check_ins_check_in_type_id);
@@ -210,9 +217,22 @@ class CheckInController extends Controller
         //  return $checkin_types;exit;
          $excel_name = 'visitor_log_export_'.$checkin_types.round(microtime(true) * 1000).'.xlsx';
         $excelheadings = $register_types->register_name;
-         return \Excel::download(new CheckinExport($visitor_logs,$table_heads,$excelheadings), $excel_name);
-      
-        //return (new CheckinExport($visitor_logs,$table_heads))->download($excel_name);
-    }
 
+        return [$visitor_logs, $table_heads, $excelheadings, $excel_name];
+    }
+         
+
+    //display the excel file in blade page 
+    public function ViewExport(Request $request){
+        //data passing the blade file
+        list($visitor_logs, $table_heads, $excelheadings, $excel_name) = $this->processData($request);
+        return view('admin.check_ins.viewexport', [
+
+            'visitor_logs' => $visitor_logs,
+            'table_heads' => $table_heads,
+            'excelheadings' => $excelheadings,
+            'excel_name' => $excel_name
+
+        ]);
+    }
 }
