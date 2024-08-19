@@ -36,12 +36,12 @@
                                         </ol>
                                     </div><!--end col-->
                                     <div class="col-auto align-self-center">
-                                    <a class=" btn btn-sm btn-primary " id="view-excel-file" href="{{route('admin.checkins.viewexport')}}">View File</a> 
+                                    <a class=" btn btn-sm btn-primary d-none viewfile" id="view-excel-file" >View File</a> 
                                     </div>
 
                                     @if(auth()->user()->can($permissions['create']))
                                      <div class="col-auto align-self-center">
-                                        <a class="btn btn-success d-none" id="export-to-excel"><i class="fas fa-download"></i> Export to Excel</a>
+                                        <a class="btn btn-success d-none viewfile" id="export-to-excel"><i class="fas fa-download"></i> Export to Excel</a>
                                         <!-- <a class=" btn btn-sm btn-primary webadmin-open-ajax-popup" title="CheckIns" href="{{route($route.'.create')}}" role="button"><i class="fas fa-plus mr-2"></i>Create New</a> -->
                                      </div>
                                     @endif
@@ -142,8 +142,11 @@
             })
            
         })
+         
+    
+
         $(function(){
-           // $('#view-excel-file').addClass('d-none');
+            $('#view-excel-file').addClass('d-none');
             $(document).on('click', '#view-excel-file', function(){
                 var form_action = "{{route('admin.checkins.viewexport')}}"
                 $('#searchForm').attr('action', form_action);

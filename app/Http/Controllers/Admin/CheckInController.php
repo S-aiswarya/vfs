@@ -113,10 +113,13 @@ class CheckInController extends Controller
     }
 
     protected function processData(Request $request){
-        if($request->check_ins_check_in_type_id == 1 || $request->check_ins_check_in_type_id == 4){
-            $table_heads = ['Date', 'To(Location)','Consignor','Courier Agency Name', 'AWB No.', 'Date Sent','Zip Lock No.(As applicable)','Time of dispatch','Shipment handed over to(Name)','Description ','Check in Time','Check out Time'];
-            $collection = $this->model->select(\DB::raw("date(entry_time)"),'location','consignor','courier_agency', 'awb_no', 'dated', 'zip_lock_no', 'time_of_receipt','shipment_handed_over_to','description_of_items',\DB::raw("time(entry_time)"),\DB::raw("time(exit_time)"))->where('check_in_type_id',$request->check_ins_check_in_type_id);
-        }
+        
+    if($request->check_ins_check_in_type_id == 1 || $request->check_ins_check_in_type_id == 4)
+     {
+         $table_heads = ['Date', 'To(Location)','Consignor','Courier Agency Name', 'AWB No.', 'Date Sent','Zip Lock No.(As applicable)','Time of dispatch','Shipment handed over to(Name)','Description ','Check in Time','Check out Time'];
+        $collection = $this->model->select(\DB::raw("date(entry_time)"),'location','consignor','courier_agency', 'awb_no', 'dated', 'zip_lock_no', 'time_of_receipt','shipment_handed_over_to','description_of_items',\DB::raw("time(entry_time)"),\DB::raw("time(exit_time)"))->where('check_in_type_id',$request->check_ins_check_in_type_id);
+           
+        } 
         // Guard Logbook-Event Register
         elseif($request->check_ins_check_in_type_id == 5){
             $table_heads = ['Date','Time','Incident Brief','Name of Staff/Guard','informed to (Satff Name and Date of information)','Mode of informartion','Check in Time','Check out Time'];

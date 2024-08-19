@@ -26,7 +26,7 @@
 
                         <div class="col-md-2">
                             <div class="form-group mt-4">
-                                <button type="button" class="btn btn-primary px-4" onclick="dt();">Filter</button>
+                                <button type="button" class="btn btn-primary px-4 " id="filter" onclick="dt();">Filter</button>
                                 <button type="button" class="btn btn-secondary px-4" id="search-table-clear-btn">Clear</button>
                             </div>
                         </div>

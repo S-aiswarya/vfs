@@ -552,17 +552,18 @@
             function dt(){
                 if($('#datatable').length)
                 {
-                    if($('#export-to-excel').length && $('#checkin-register-type-id').length){
+                    if($('.viewfile').length && $('#checkin-register-type-id').length){
                         //alert($('#checkin-register-type-id').val());
                         if($('#checkin-register-type-id').val() != "" && $('#checkin-register-type-id').val() != null){
-                            $('#export-to-excel').removeClass('d-none');
+                            $('.viewfile').removeClass('d-none');
                         }
                         else{
-                            $('#export-to-excel').addClass('d-none');
+                            $('.viewfile').addClass('d-none');
                         }
                     }
                     $('#datatable').DataTable().clear().destroy();
                     initDt();
+
 
                 }
                 if($('#datatable2').length)

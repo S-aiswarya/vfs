@@ -7,7 +7,7 @@
     </tr>
         <tr>
       @foreach($headings as $heading)
-        <th style="text-align: center; font-size: 10px;">{{$heading}}</th>
+        <th>{{$heading}}</th>
       @endforeach
       </tr>
 
@@ -20,7 +20,7 @@
         @endphp
         <tr>
             @foreach($items as $item)
-                <th>{{$item}}</th>
+                <td>{{$item}}</td>
             @endforeach
         </tr>
     @endforeach
