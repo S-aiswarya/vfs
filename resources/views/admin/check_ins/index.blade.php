@@ -29,10 +29,10 @@
                             <div class="page-title-box">
                                 <div class="row">
                                     <div class="col">
-                                        <h4 class="page-title">All CheckIns</h4>
+                                        <h4 class="page-title">All Check-Ins</h4>
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Admin</a></li>
-                                            <li class="breadcrumb-item active">All CheckIns</li>
+                                            <li class="breadcrumb-item active">All Check-Ins</li>
                                         </ol>
                                     </div><!--end col-->
                                     @if(auth()->user()->can($permissions['create']))
