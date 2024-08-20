@@ -210,7 +210,7 @@ class CheckInController extends Controller
             $to_date = date('Y-m-d H:i:s', strtotime($to_date.' 00:00:00'));
             $collection->whereBetween('created_at', [$from_date, $to_date]);
         }
-
+       
         $visitor_logs = $collection->take(1000)->get();
          // checkin_types obj formate  convert for excel sheet
          $register_types=Register_type::find($request->check_ins_check_in_type_id);
@@ -230,7 +230,6 @@ class CheckInController extends Controller
         //data passing the blade file
         list($visitor_logs, $table_heads, $excelheadings, $excel_name) = $this->processData($request);
         return view('admin.check_ins.viewexport', [
-
             'visitor_logs' => $visitor_logs,
             'table_heads' => $table_heads,
             'excelheadings' => $excelheadings,
