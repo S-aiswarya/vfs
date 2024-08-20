@@ -56,7 +56,9 @@
   @include('admin.exports.Viewfile', [
   'collections' => $visitor_logs, 'headings' => $table_heads, 'excelheadings' => $excelheadings])
 
-  <span style="position:relative;left:640px;top:10px;font-size:13px;margin-top:auto;">Privileged & Confidential</span>
+  <span style="position:relative;left:860px;top:10px;font-size:13px;margin-top:auto;">Effective Date: {{ now()->format('Y.m.d') }}</span>
+  <span style="position:relative;left:300px;top:10px;font-size:13px;margin-top:auto;">Privileged & Confidential</span>
+  
   
 
 </body>

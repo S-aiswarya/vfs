@@ -299,3 +299,9 @@ button.btn.btn-dark.btn-block.waves-effect.waves-light {
 a.logo.logo-admin img {
     width: 85px;
 }
+
+/***** changes from 20082023   *****/
+.user_create_form .form-group{
+    margin-bottom: 20px !important;
+    position: relative;
+}
