@@ -1,7 +1,7 @@
 <div class="left-sidenav">
             <!-- LOGO -->
             <div class="brand">
-                <a href="{{route('admin.dashboard')}}" class="logo">
+                <a href="{{route('admin.checkins.index')}}" class="logo">
                     <x-logo-sm></x-logo-sm>
                 </a>
             </div>

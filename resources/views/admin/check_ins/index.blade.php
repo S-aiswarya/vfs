@@ -36,7 +36,7 @@
                                         </ol>
                                     </div><!--end col-->
                                     <div class="col-auto align-self-center">
-                                    <a class=" btn btn-sm btn-primary d-none viewfile" id="view-excel-file" >View File</a> 
+                                    <a class=" btn btn-sm btn-primary d-none viewfile" id="view-excel-file" >View Reports</a> 
                                     </div>
 
                                     @if(auth()->user()->can($permissions['create']))
@@ -71,11 +71,11 @@
                                             <th class="table-width-120">Name</th>
                                             <th class="table-width-120">Phonenumber</th>
                                             <th class="table-width-120">Token</th>
-                                            <th class="table-width-120">Check-in time</th>
-                                            <th class="table-width-120">Check-out time</th>
+                                            <th class="table-width-120">Check-In Time</th>
+                                            <th class="table-width-120">Check-Out Time</th>
                                             <th class="table-width-120">Last Updated On</th>
                                             <th class="nosort nosearch table-width-10">@if(auth()->user()->can($permissions['edit'])) Edit @else View @endif</th>
-                                            <th class="nosort nosearch table-width-10">Delete</th>
+                                            <!-- <th class="nosort nosearch table-width-10">Delete</th>  -->
                                         </tr>
 
 
@@ -110,7 +110,7 @@
             {data: 'exit_time', name: 'exit_time'},
             {data: 'date', name: 'updated_at'},
             {data: 'action_ajax_edit', name: 'action_ajax_edit'},
-            {data: 'action_delete', name: 'action_delete'}
+            // {data: 'action_delete', name: 'action_delete'}
         ];
         var slno_i = 0;
         var order = [0, 'desc'];
