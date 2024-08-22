@@ -220,7 +220,8 @@ class CheckInController extends Controller
          // checkin_types obj formate  convert for excel sheet
          $register_types=Register_type::find($request->check_ins_check_in_type_id);
       
-         $string_replace=preg_replace('/[^a-zA-z]/', '', $register_types->register_name);
+         //convert the letter format
+         $string_replace=preg_replace('/[^a-zA-z]/', '',$register_types->register_name);
          $checkin_types=strtolower($string_replace);
         //  return $checkin_types;exit;
          $excel_name = 'visitor_log_export_'.$checkin_types.round(microtime(true) * 1000).'.xlsx';
@@ -242,4 +243,12 @@ class CheckInController extends Controller
 
         ]);
     }
+   public function view(Request $request){
+      
+    $value=$request->all();
+    if($request->$value=null){
+
+    }
+   }
+
 }

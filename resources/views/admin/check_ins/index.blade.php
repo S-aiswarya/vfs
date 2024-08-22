@@ -42,7 +42,7 @@
                                     @if(auth()->user()->can($permissions['create']))
                                      <div class="col-auto align-self-center">
                                         <a class="btn btn-success d-none viewfile" id="export-to-excel"><i class="fas fa-download"></i> Export to Excel</a>
-                                        <!-- <a class=" btn btn-sm btn-primary webadmin-open-ajax-popup" title="CheckIns" href="{{route($route.'.create')}}" role="button"><i class="fas fa-plus mr-2"></i>Create New</a> -->
+                                        <!-- <a class=" btn btn-sm btn-primary webadmin-open-ajax-popup" title="CheckIns" href="{{route($route.'.create')}}" role="button"><i class="fas fa-plus mr-2"></i>Create New</a>  -->
                                      </div>
                                     @endif
                                 </div><!--end row-->                                                              
@@ -59,7 +59,7 @@
                     <div class="clearfix"></div>
                     <div class="row">
                         <div class="col-12">
-                            <div class="card">
+                            <div class="card all_check_ins">
                                 <div class="card-body">
                                     <table class="table table-hover demo-table-search table-responsive-block" id="datatable"
                                            data-datatable-ajax-url="{{ route($route.'.index') }}" >
@@ -67,14 +67,14 @@
                                         <tr>
                                             <th class="nodisplay"></th>
                                             <th class="table-width-10">ID</th>
-                                            <th class="table-width-10">Type</th>
+                                            <th style="width: 100px;">Type</th>
                                             <th class="table-width-120">Name</th>
                                             <th class="table-width-120">Phonenumber</th>
                                             <th class="table-width-120">Token</th>
                                             <th class="table-width-120">Check-In Time</th>
                                             <th class="table-width-120">Check-Out Time</th>
                                             <th class="table-width-120">Last Updated On</th>
-                                            <th class="nosort nosearch table-width-10">@if(auth()->user()->can($permissions['edit'])) Edit @else View @endif</th>
+                                            <th class="nosort nosearch table-width-10">@if(auth()->user()->can($permissions['edit'])) View @else View @endif</th>
                                             <!-- <th class="nosort nosearch table-width-10">Delete</th>  -->
                                         </tr>
 
@@ -83,6 +83,7 @@
                                         </thead>
 
                                         <tbody>
+
                                         </tbody>
 
                                     </table>
