@@ -95,7 +95,8 @@ class ListController extends Controller
     }
    
     public function centers(Request $request){
-        $centers = new Center;
+        // $centers = new Center;
+        $centers = DB::table('centers')->select('centers.*','locations.name as location')->join('locations','locations.id', '=', 'centers.location_id');
         if($request->location_id)
         $centers = $centers->where('location_id', $request->location_id);
         if($request->keyword)
