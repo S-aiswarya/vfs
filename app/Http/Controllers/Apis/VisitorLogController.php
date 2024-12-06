@@ -25,7 +25,8 @@ class VisitorLogController extends Controller
     }
 
     private function getCenterPrefix($id){
-        return DB::table('centers')->select('token_prefix')->find($id);
+        $center =  DB::table('centers')->select('token_prefix')->find($id);
+        return $center->token_prefix;
     }
 
      
