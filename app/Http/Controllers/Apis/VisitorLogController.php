@@ -18,7 +18,14 @@ class VisitorLogController extends Controller
 {
     public function Checkin(CheckInRequest $request, VisitorLogService $service){
         $request->validated();
-        return $service->store($request->all());
+        $data = $request->all();
+        if(!empty($request->center_id))
+           $data['token_prefix'] = $this->getCenterPrefix($request->center_id);
+        return $service->store($data);
+    }
+
+    private function getCenterPrefix($id){
+        return DB::table('centers')->select('token_prefix')->find(id);
     }
 
      
