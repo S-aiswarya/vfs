@@ -106,8 +106,6 @@ class ListController extends Controller
     }
 
     public function gates(Request $request){
-        if(empty($request->center_id))
-            return response()->json(['error'=>"missing center_id"],401);
         $gates = new Gate;
         if($request->center_id)
         $gates = $gates->where('center_id', $request->center_id);
