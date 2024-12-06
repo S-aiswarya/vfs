@@ -12,6 +12,7 @@ use App\Models\CheckIn;
 use App\Models\ApiLog;
 use Illuminate\Http\Request;
 use DB;
+use Carbon\Carbon;
 
 class VisitorLogController extends Controller
 {
@@ -103,10 +104,6 @@ class VisitorLogController extends Controller
             $items = $items->where('gate_id', $data['gate_id']);
         }
 
-        if(!empty($data['gate_id'])){
-            $items = $items->where('gate_id', $data['gate_id']);
-        }
-
         
         if(!empty($data['exit_time'])){
             $items = $items->wherenull('exit_time');
@@ -115,8 +112,8 @@ class VisitorLogController extends Controller
            
         if(isset($data['from']) && isset($data['to']))
         {
-            $from = $data['from'];
-            $to = $data['to'];
+            $from = Carbon::parse($data['from'])->format('Y-m-d H:i:s');
+            $to = Carbon::parse($data['to'])->format('Y-m-d H:i:s');
             $items = $items->whereBetween(\DB::raw('DATE(created_at)'), array($from, $to));
         } 
 
