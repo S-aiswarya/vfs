@@ -29,7 +29,7 @@ class CenterController extends Controller
     }
    
     protected function getCollection() {
-        return $this->model->select('centers.*','locations.name as location')->join('locations','locations.id', '=', 'centers.location_id');
+        return $this->model->select('centers.*','locations.name as location')->join('locations','locations.id','=', 'centers.location_id');
     }
 
     protected function setDTData($collection) {
