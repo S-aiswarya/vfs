@@ -40,7 +40,7 @@ class RegistertypeController extends Controller
                 if($obj->flag)
                     return '<a href="'.BladeHelper::asset($obj->flag).'" target="_blank"><img src="'.BladeHelper::asset($obj->flag).'" width="30px;"/></a>';
             })
-            ->rawColumns(['action_ajax_edit', 'action_delete', 'flag']);
+            ->rawColumns(['action_ajax_edit', 'flag']);
     }
 
     protected function getSearchSettings(){}
