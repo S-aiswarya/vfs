@@ -26,7 +26,6 @@ class CheckInRequest extends FormRequest
         $ignoreId = ($this->input('id'))?decrypt($this->input('id')):NULL;
         return [
             'name' => 'required|max:250',
-            'phonenumber' =>'required|max:250',
             'email' =>'nullable|email',
             'check_in_type_id' => 'required|exists:register_types,id',
            
