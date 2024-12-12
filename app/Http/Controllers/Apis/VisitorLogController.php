@@ -12,12 +12,21 @@ use App\Models\CheckIn;
 use App\Models\ApiLog;
 use Illuminate\Http\Request;
 use DB;
+use Carbon\Carbon;
 
 class VisitorLogController extends Controller
 {
     public function Checkin(CheckInRequest $request, VisitorLogService $service){
         $request->validated();
-        return $service->store($request->all());
+        $data = $request->all();
+        if(!empty($request->center_id))
+           $data['token_prefix'] = $this->getCenterPrefix($request->center_id);
+        return $service->store($data);
+    }
+
+    private function getCenterPrefix($id){
+        $center =  DB::table('centers')->select('token_prefix')->find($id);
+        return $center->token_prefix;
     }
 
      
@@ -105,10 +114,6 @@ class VisitorLogController extends Controller
             $items = $items->where('gate_id', $data['gate_id']);
         }
 
-        if(!empty($data['gate_id'])){
-            $items = $items->where('gate_id', $data['gate_id']);
-        }
-
         
         if(!empty($data['exit_time'])){
             $items = $items->wherenull('exit_time');
@@ -117,8 +122,8 @@ class VisitorLogController extends Controller
            
         if(isset($data['from']) && isset($data['to']))
         {
-            $from = $data['from'];
-            $to = $data['to'];
+            $from = Carbon::parse($data['from'])->format('Y-m-d H:i:s');
+            $to = Carbon::parse($data['to'])->format('Y-m-d H:i:s');
             $items = $items->whereBetween(\DB::raw('DATE(created_at)'), array($from, $to));
         } 
 

@@ -106,7 +106,7 @@ class ListController extends Controller
     }
 
     public function gates(Request $request){
-        $gates = new Gate;
+        $gates = DB::table('gates')->select('gates.*')->join('centers','centers.id', '=', 'gates.center_id');
         if($request->center_id)
         $gates = $gates->where('center_id', $request->center_id);
         if($request->keyword)
