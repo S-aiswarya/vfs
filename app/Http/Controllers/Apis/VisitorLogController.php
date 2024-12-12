@@ -33,11 +33,13 @@ class VisitorLogController extends Controller
 
     
     public function Checkout(Request $request, VisitorLogService $service){
+       
         if(!$request->id)
 
            return response()->json(['message' => 'Invalid Request'], 400);
         $item= CheckIn::find($request->id);
-
+         
+     
 
         if(!$item)
             return response()->json(['message' => 'Invalid Request'], 400);
