@@ -120,8 +120,7 @@
             $('#InputFrm').validate({
                 ignore: [],
                 rules: {
-                    "name": "required",
-                    "phonenumber": "required",
+                    "name": "required",             
                     "email":{
                       required:false,
                       email:true,
