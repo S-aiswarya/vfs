@@ -40,7 +40,7 @@
   <!-- Location -->
   <div class="form-group">
       <label for="location">Location</label>
-      <select name="location_id"  style="width: 100% !important;" class="w-100 webadmin-select2-input form-control" data-parent="#webAdminModal" data-select2-url="{{route('admin.select2.locations')}}">
+      <select name="location_id"  style="width: 100% !important;"  id="location" class="w-100 webadmin-select2-input form-control" data-parent="#webAdminModal" data-select2-url="{{route('admin.select2.locations')}}">
         @if($obj->center_location)
           <option value="{{$obj->center_location->id}}" selected="selected">{{$obj->center_location->name}}</option>
         @endif
@@ -50,7 +50,7 @@
   <!-- Center -->
   <div class="form-group">
       <label for="name">Center</label>
-      <select name="center_id" style="width: 100% !important;" class="w-100 webadmin-select2-input form-control" data-parent="#webAdminModal" data-select2-url="{{route('admin.select2.centers')}}">
+      <select name="center_id" style="width: 100% !important;"   id="center" class="w-100 webadmin-select2-input form-control" data-parent="#webAdminModal" data-select2-url="{{route('admin.select2.centers')}}">
         @if($obj->center)
           <option value="{{$obj->center->id}}" selected="selected">{{$obj->center->name}}</option>
         @endif
@@ -60,7 +60,7 @@
   <!-- Gate -->
   <div class="form-group">
       <label for="gate">Gate/Floors</label>
-      <select name="gate_id"  style="width: 100% !important;" class="w-100 webadmin-select2-input form-control" data-parent="#webAdminModal" data-select2-url="{{route('admin.select2.gates')}}">
+      <select name="gate_id"  style="width: 100% !important;" id="gate" class="w-100 webadmin-select2-input form-control" data-parent="#webAdminModal" data-select2-url="{{route('admin.select2.gates')}}">
         @if($obj->gate)
           <option value="{{$obj->gate->id}}" selected="selected">{{$obj->gate->name}}</option>
         @endif
@@ -132,9 +132,10 @@ $(document).ready(function() {
     $('#office_country_id').change(function() {
         var office_country_id = $(this).val();
         if(office_country_id) {
-            $.get('/api/get-cities/' + office_country_id, function(data) {
+            $.get('select2/cities?office_country_id=' + office_country_id, function(data) {
                 $('#city').empty().append('<option value="">Select City</option>');
-                $.each(data.cities, function(index, city) {
+                $.each(data.cities, function(cities, city) {
+                 
                     $('#city').append('<option value="' + city.id + '">' + city.name + '</option>');
                 });
             });
