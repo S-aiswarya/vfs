@@ -211,7 +211,7 @@ Route::group(['prefix' => $prefix, 'middleware' => ['web']], function () use($mi
 
          //cities
          Route::get('/cities', [CityController::class, 'index'])->name('admin.cities.index');
-         Route::get('/cities/create', [CityController::class, 'create'])->name('admin.cities.create');
+         Route::get('/cities/create/{office_country_id}', [CityController::class, 'create'])->name('admin.cities.create');
          Route::get('/cities/edit/{id}', [CityController::class, 'edit'])->name('admin.cities.edit');
          Route::get('/cities/destroy/{id}', [CityController::class, 'destroy'] )->name('admin.cities.destroy');
          Route::get('/cities/show/{id}', [CityController::class, 'show'])->name('admin.cities.show');

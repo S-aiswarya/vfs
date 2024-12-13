@@ -57,7 +57,7 @@ class UserController extends Controller
         return $this->model->select('users.*','roles.name as role_name', 'office_countries.name as office_country')
                     ->join('roles', 'users.role_id', '=', 'roles.id')
                     ->leftJoin('office_countries', 'users.office_country_id', '=', 'office_countries.id')
-                    ->where('users.user_type', 'user');
+                    ->where('users.user_type','user');
     }
 
     protected function setDTData($collection) {

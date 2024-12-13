@@ -18,6 +18,7 @@ class RegisterTypeGroupResource extends JsonResource
         return [
             'name' => $this->group_name,
             'register_types' => new RegisterTypeResourceCollection($this->register_types)
+
         ];
     }
 }

@@ -19,7 +19,7 @@
       </div>
       <div class="form-group">
             <label for="name">Country</label>
-            <select name="office_country_id" style="width: 100% !important;" class="w-100 webadmin-select2-input form-control" data-parent="#webAdminModal" data-select2-url="{{route('admin.select2.countries')}}">
+            <select name="office_country_id" id="office_country_id" style="width: 100% !important;" class="w-100 webadmin-select2-input form-control" data-parent="#webAdminModal" data-select2-url="{{route('admin.select2.countries')}}">
               @if($obj->officeCountry)
                 <option value="{{$obj->officeCountry->id}}" selected="selected">{{$obj->officeCountry->name}}</option>
               @endif
@@ -29,9 +29,9 @@
        <!-- City -->
   <div class="form-group">
       <label for="city">City</label>
-      <select name="city_id" style="width: 100% !important;" class="w-100 webadmin-select2-input form-control" data-parent="#webAdminModal" data-select2-url="{{route('admin.select2.cities')}}">
+      <select name="city_id" style="width: 100% !important;" id="city" class="w-100 webadmin-select2-input form-control" data-parent="#webAdminModal" data-select2-url="{{route('admin.select2.cities')}}">
         @if($obj->city)
-          <option value="{{$obj->city->id}}" selected="selected">{{$obj->officeCountry->city->name}}</option>
+          <option value="{{$obj->city->id}}" selected="selected">{{$obj->city->name}}</option>
         @endif
       </select>
   </div> 
@@ -125,3 +125,22 @@
    
   </form>
 </div>
+<script>
+$(document).ready(function() {
+   
+    // When country is selected, fetch cities
+    $('#office_country_id').change(function() {
+        var office_country_id = $(this).val();
+        if(office_country_id) {
+            $.get('/api/get-cities/' + office_country_id, function(data) {
+                $('#city').empty().append('<option value="">Select City</option>');
+                $.each(data.cities, function(index, city) {
+                    $('#city').append('<option value="' + city.id + '">' + city.name + '</option>');
+                });
+            });
+        } else {
+            $('#city').empty().append('<option value="">Select City</option>');
+        }
+    });
+  });
+    </script>

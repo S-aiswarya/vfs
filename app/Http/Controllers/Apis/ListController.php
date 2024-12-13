@@ -50,7 +50,7 @@ class ListController extends Controller
 {
  
     public function register_types(Request $request){
-        $register_types = Register_type::select('id','key_id','register_name','group_name','check_out','sort_order');
+        $register_types = Register_type::select('id','key_id','register_name','group_name','check_out','sort_order','checkin_required');
         if($request->keyword)
            $register_types->where('register_name', 'LIKE', '%'.$request->keyword.'%');
         $register_types = $register_types->get();
@@ -60,7 +60,7 @@ class ListController extends Controller
     public function register_type_groups(Request $request){
         $groups = Register_type::select('group_name')->groupBy('group_name')->get();
         foreach($groups as $group){
-            $group->register_types = Register_type::select('id','key_id','register_name','check_out')
+            $group->register_types = Register_type::select('id','key_id','register_name','check_out','checkin_required')
                                 ->where('group_name', $group->group_name)->orderBy('sort_order')->get();
         }
         return new RegisterTypeGroupResourceCollection($groups);
