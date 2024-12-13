@@ -23,7 +23,7 @@
         <input type="text" class="form-control" id="name" name="name" value="{{$obj->name}}">
       </div>
         
-      <div class="form-group col-md-12">
+      <div class="form-group ">
         <label>Address</label>
           <textarea name="address" class="form-control" rows="2" id="address">{{$obj->address}}</textarea>
       </div>

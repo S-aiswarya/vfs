@@ -50,7 +50,7 @@
   <!-- Center -->
   <div class="form-group">
       <label for="name">Center</label>
-      <select name="center_id" style="width: 100% !important;"   id="center" class="w-100 webadmin-select2-input form-control" data-parent="#webAdminModal" data-select2-url="{{route('admin.select2.centers')}}">
+      <select name="center_id" style="width: 100% !important;"   id="center" class="w-100 webadmin-select2-input form-control" data-parent="#webAdminModal" data-select2-url="{{route('admin.select2.centers')}}?">
         @if($obj->center)
           <option value="{{$obj->center->id}}" selected="selected">{{$obj->center->name}}</option>
         @endif
@@ -60,7 +60,7 @@
   <!-- Gate -->
   <div class="form-group">
       <label for="gate">Gate/Floors</label>
-      <select name="gate_id"  style="width: 100% !important;" id="gate" class="w-100 webadmin-select2-input form-control" data-parent="#webAdminModal" data-select2-url="{{route('admin.select2.gates')}}">
+      <select name="gate_id"  style="width: 100% !important;" id="gate" class="w-100 webadmin-select2-input form-control" data-parent="#webAdminModal" data-select2-url="{{route('admin.select2.gates')}}?">
         @if($obj->gate)
           <option value="{{$obj->gate->id}}" selected="selected">{{$obj->gate->name}}</option>
         @endif
@@ -132,16 +132,77 @@ $(document).ready(function() {
     $('#office_country_id').change(function() {
         var office_country_id = $(this).val();
         if(office_country_id) {
-            $.get('select2/cities?office_country_id=' + office_country_id, function(data) {
-                $('#city').empty().append('<option value="">Select City</option>');
-                $.each(data.cities, function(cities, city) {
-                 
-                    $('#city').append('<option value="' + city.id + '">' + city.name + '</option>');
-                });
-            });
+          $('#city').empty().append('<option value="">Select City</option>');
+          var route = "{{route('admin.select2.cities')}}?office_country_id=" + office_country_id ;
+          var id = "#city";
+          processSearch(id,route);
         } else {
             $('#city').empty().append('<option value="">Select City</option>');
         }
     });
+  
+
+  $('#city').change(function() {
+        var city_id = $(this).val();
+        if(city_id) {
+          $('#location').empty().append('<option value="">Select Location</option>');
+          var route = "{{route('admin.select2.locations')}}?city_id=" + city_id;
+          var id = "#location";
+          processSearch(id,route);
+        } else {
+            $('#location').empty().append('<option value="">Select Location</option>');
+        }
+    });
+
+
+
+    $('#location').change(function() {
+        var location_id = $(this).val();
+        if(location_id) {
+          $('#center').empty().append('<option value="">Select Center</option>');
+          var route = "{{route('admin.select2.centers')}}?location_id=" + location_id;
+          var id = "#center";
+          processSearch(id,route);
+        } else {
+            $('#center').empty().append('<option value="">Select Center</option>');
+        }
+    });
+
+    
+    $('#center').change(function() {
+        var center_id = $(this).val();
+        if(center_id) {
+          $('#gate').empty().append('<option value="">Select Gate</option>');
+          var route = "{{route('admin.select2.gates')}}?center_id=" + center_id;
+          var id = "#gate";
+          processSearch(id,route);
+        } else {
+            $('#gate').empty().append('<option value="">Select Center</option>');
+        }
+    });
+
+
   });
+
+
+  
+
+  function processSearch(id,route) {
+    $(id).select2({
+      ajax: {
+          url: function(params) {
+              return route;
+          },
+          dataType: 'json',
+          delay: 250,
+          processResults: function(data) {
+              return {
+                  results: data
+              };
+          },
+          cache: true
+      }
+  });
+
+  }
     </script>

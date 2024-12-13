@@ -121,12 +121,12 @@ class WebadminController extends Controller {
     public function select2_cities(Request $request){
 
         $items = DB::table('cities')->where('name', 'like', $request->q.'%')->orderBy('name')->whereNull('deleted_at');
-      
-          if(!empty($request->office_country_id))
-            $items->where('country_id',$request->office_country_id);
-       $items->get();
 
-        return json_encode($items);
+        if(!empty($request->office_country_id))
+            $items->where('country_id',$request->office_country_id);
+
+         $items = $items->get(); 
+
         $json = [];
         foreach($items as $c){
             $json[] = ['id'=>$c->id, 'text'=>$c->name];
@@ -138,8 +138,12 @@ class WebadminController extends Controller {
 
 
     public function select2_locations(Request $request){
-        $items = DB::table('locations')->where('name', 'like', $request->q.'%')->orderBy('name')->whereNull('deleted_at')
-            ->get();
+        $items = DB::table('locations')->where('name', 'like', $request->q.'%')->orderBy('name')->whereNull('deleted_at');
+        
+        if(!empty($request->city_id))
+        $items->where('city_id',$request->city_id);
+
+         $items = $items->get(); 
         $json = [];
         foreach($items as $c){
             $json[] = ['id'=>$c->id, 'text'=>$c->name];
@@ -187,8 +191,12 @@ class WebadminController extends Controller {
     }
 
     public function select2_centers(Request $request){
-        $items = DB::table('centers')->where('name', 'like', $request->q.'%')->orderBy('name')->whereNull('deleted_at')
-            ->get();
+        $items = DB::table('centers')->where('name', 'like', $request->q.'%')->orderBy('name')->whereNull('deleted_at');
+           
+        if(!empty($request->location_id))
+        $items->where('location_id',$request->location_id);
+
+         $items = $items->get(); 
         $json = [];
         foreach($items as $c){
             $json[] = ['id'=>$c->id, 'text'=>$c->name];
@@ -197,8 +205,14 @@ class WebadminController extends Controller {
     }
 
     public function select2_gates(Request $request){
-        $items = DB::table('gates')->where('name', 'like', $request->q.'%')->orderBy('name')->whereNull('deleted_at')
-            ->get();
+        $items = DB::table('gates')->where('name', 'like', $request->q.'%')->orderBy('name')->whereNull('deleted_at');
+
+             
+        if(!empty($request->center_id))
+        $items->where('center_id',$request->center_id);
+
+         $items = $items->get(); 
+           
         $json = [];
         foreach($items as $c){
             $json[] = ['id'=>$c->id, 'text'=>$c->name];
