@@ -122,7 +122,6 @@ class WebadminController extends Controller {
 
         $items = DB::table('cities')->where('name', 'like', $request->q.'%')->orderBy('name')->whereNull('deleted_at');
       
-        print_r( $items);exit;
           if(!empty($request->office_country_id))
             $items->where('country_id',$request->office_country_id);
        $items->get();
